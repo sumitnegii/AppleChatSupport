@@ -1,0 +1,251 @@
+AppleSupport Customer Intent Labeling Report
+Source: apple_support_conversations.csv
+Rows used: 95720
+Cleaning: minimal URL/mention removal, whitespace collapse, punctuation normalization
+Labels used: software_update, battery_charging, app_store_itunes, account_apple_id, connectivity, keyboard_input, device_performance, payments_billing, mail_messages_icloud, media_accessories_support
+
+Proposed label distribution:
+software_update: 23939
+battery_charging: 4750
+app_store_itunes: 15097
+account_apple_id: 1151
+connectivity: 2344
+keyboard_input: 2879
+device_performance: 14088
+payments_billing: 472
+mail_messages_icloud: 3614
+media_accessories_support: 27386
+
+20 examples per intent for manual review:
+
+### software_update
+tweet_id=697 | author_id=115854 | text=The newest update I made sure to download it yesterday
+tweet_id=714 | author_id=115856 | text=Hey and anyone else who upgraded to ios11 1 are y all having issues with capital I in the Mail app As it puts in A
+tweet_id=725 | author_id=115860 | text=I upgraded I t didn t work
+tweet_id=735 | author_id=115864 | text=I have the iPhone 6s Plus and just did the most recent update
+tweet_id=739 | author_id=115865 | text=iOS 11 0 3
+tweet_id=745 | author_id=115865 | text=I need the software update urgently The battery lasts literally half a day
+tweet_id=747 | author_id=115865 | text=Hola necesito urgente la actualización de software La batería me dura literal medio día
+tweet_id=756 | author_id=115868 | text=MY HOME BUTTON DOESN T WORK #IOS11
+tweet_id=765 | author_id=115870 | text=After update #ios1103 no spotify on my lock screen
+tweet_id=1757 | author_id=116098 | text=I just updated it and it s still coming up
+tweet_id=1772 | author_id=116102 | text=iPhone 6 yes ios11 Checked for updates none available I ve swiped up to close the app several times and I ve restarted it 2x
+tweet_id=1789 | author_id=116107 | text=No I had 11 0 3 but now it says 11 1 update so ima go ahead and do that
+tweet_id=2615 | author_id=116334 | text=Yes after the update I Phone 7
+tweet_id=2616 | author_id=116334 | text=why is my battery life short I updated to 11 1 my battery is poor Wife didn t she likes her battery life
+tweet_id=2627 | author_id=116337 | text=iOS 11 1 it s been getting worse for a few months now
+tweet_id=2631 | author_id=116338 | text=iPhone 7 iOS 11 1
+tweet_id=2654 | author_id=116345 | text=newest version of iOS and iPhone 7
+tweet_id=2680 | author_id=116351 | text=It s sorted Thanks iOS update needed a change and hard reboot
+tweet_id=2682 | author_id=116351 | text=ios 11 0 3 on 6s Cannot adjust alarm volume so waking up all in my house and neighbours despite ringer being set to minimum
+tweet_id=2684 | author_id=116352 | text=live photo keeps turning on in the camera even when it s set to stay off Please fix in next update
+
+### battery_charging
+tweet_id=1775 | author_id=116103 | text=Battery life just got worst
+tweet_id=2637 | author_id=116340 | text=Hi I plugged an adapter straight into the transformer and it still didn't charger The charger LED does not light up either
+tweet_id=2640 | author_id=116340 | text=hi I have a problem with my macbook pro it won't turn on I think it might be the charger but not sure Is there a
+tweet_id=2673 | author_id=116349 | text=They could nothing worked I went into the Apple store in lynnwood and the guy tried to charge me for a replacement phone although it s an
+tweet_id=3767 | author_id=116622 | text=I m no expert in battery life but 40 doesn t go to 7 in 5minutes
+tweet_id=4900 | author_id=116861 | text=I have and my battery life has become even worse
+tweet_id=6662 | author_id=176772 | text=WiFi keeps going on after I turn it off and it s draining my battery quick
+tweet_id=6752 | author_id=185386 | text=Why is iOS 11 draining my 6s plus battery
+tweet_id=6789 | author_id=302855 | text=Please fix the update battery drains like crazy went from fully charge to 5 in 4 5 hours standby didn't even use it
+tweet_id=6798 | author_id=612804 | text=Una autentica MIERDA Really shit Muy battery is not working anymore
+tweet_id=6804 | author_id=749158 | text=Made the phone battery draining
+tweet_id=6808 | author_id=216368 | text=This update sucks Everything on my phone is slower and the battery drains quickly
+tweet_id=6813 | author_id=606862 | text=Please fix the battery life problem Phone hardly worth using at the moment
+tweet_id=6816 | author_id=288241 | text=Got any battery cases for iPhone 6s Plus My Chinese copy is dodgy
+tweet_id=6823 | author_id=183951 | text=in ios 11 0 2 battery draining problem phone gets too laggy
+tweet_id=6831 | author_id=608540 | text=How bout fixing the battery issues first it sucks ass bout to get an android phone
+tweet_id=6892 | author_id=187819 | text=For the love of god please sort this battery issue guys My new 8 plus has had all the fun taken out of it I hate it after three days of ownership It s like my battery as actually halved
+tweet_id=255819 | author_id=176849 | text=Fix Battery draining and CC toggle BT and WiFi on and off
+tweet_id=332837 | author_id=197447 | text=After download 11 0 2 battery drain like mad for 4-mths old iPhone 7 even with little usage no video or music
+tweet_id=688385 | author_id=183883 | text=You can t lol APPLE HAS THE POWER YOU DONT OWN ANY OF IT YOU HAVE TO DO WHAT APPLE WANTS WHICH IS ONLINE ALL THE TIME yes I own apple 2
+
+### app_store_itunes
+tweet_id=717 | author_id=115857 | text=This is what is happening
+tweet_id=752 | author_id=115867 | text=my Apple TV works fine with my phone but when playing videos on Mac air it stutters so much sound is still on Mac not tv
+tweet_id=763 | author_id=115870 | text=The app is still there But no longer able to control it from the lockscreen
+tweet_id=1764 | author_id=116100 | text=Hello I need some help regarding the region change on my Apple ID
+tweet_id=1768 | author_id=116101 | text=it has but not for some time now i ve tried with two different apple ids but it s still not showing up on my phone
+tweet_id=1791 | author_id=116107 | text=why won t my apps fuccin download or update
+tweet_id=2619 | author_id=116335 | text=But this does not show the music stored on my phone like it did in os3 I do not want to store music on my phone
+tweet_id=2632 | author_id=116338 | text=And why is my music NEVER in my control center
+tweet_id=2644 | author_id=116342 | text=When you roll the month it does not appear and hangs
+tweet_id=2648 | author_id=116343 | text=do you have any apps for epilepsy so I can detect my seizures thanks in advance
+tweet_id=2662 | author_id=116347 | text=So why is this happening I I I
+tweet_id=3777 | author_id=116625 | text=I've also forced the app to close from the background and reopened no dice
+tweet_id=4879 | author_id=116855 | text=I can t download songs Progress icon keeps spinning On both data WiFi Stream works though Can t add songs to playlists
+tweet_id=4885 | author_id=116856 | text=Yes and I t happens in iMessage as well
+tweet_id=4906 | author_id=116855 | text=The Overlapping url over TIME on Free WiFi hotspots remains v11 0 3 Not a WiFi problem two different hotspots shown
+tweet_id=5837 | author_id=117106 | text=Yes Sorry I just watched a video about 11 2 beta 11 1 When I type the letter Eye I happens
+tweet_id=6483 | author_id=117151 | text=Hello what s happening to my screen
+tweet_id=6657 | author_id=117177 | text=My wife made the mistake of updating to 11 How can we revert back Her password keeper app is now dead She can't access her passwords
+tweet_id=6663 | author_id=176768 | text=how can I customise it to remove the Screen Mirroring item I have no Apple TV so I don't need it
+tweet_id=6697 | author_id=178218 | text=How do I stop dock from appearing on iPad every time I swipe up for control centre
+
+### account_apple_id
+tweet_id=6554 | author_id=117154 | text=how long does it take usually for account recovery to get back to you It s been about a week now
+tweet_id=8297 | author_id=117454 | text=Hello there i need help with the use of an administartors name and password on my imac
+tweet_id=11139 | author_id=118106 | text=I get prompted for a system administrator password on a MBP MacOS but there is no system administrator account I m aware of
+tweet_id=23127 | author_id=121036 | text=can I get any help on here Or is this not a support account at all
+tweet_id=31438 | author_id=122933 | text=Yes same thing Its not working I'm trying on both my account and as a guest It says both times that I do not have access
+tweet_id=31895 | author_id=123046 | text=somebody trying to get into my account
+tweet_id=36031 | author_id=123831 | text=I have also have signed out of my iMessage account and logged back in
+tweet_id=38890 | author_id=124485 | text=I tried to reset my question through this link but again We apologize but we are unable to verify your account information online
+tweet_id=40526 | author_id=124894 | text=On Safari it gives me connection error after entering 2FA password and trusting the browser dialogs I get a similar error in iCloud prefs
+tweet_id=40528 | author_id=124894 | text=Other site works on Safari and at the same time icloud login also works perfectly fine in Chrome
+tweet_id=41554 | author_id=125135 | text=I put it in recovery mode and reset it but it just asked me for the password again When I tried to reset it a second time
+tweet_id=41558 | author_id=125136 | text=Can you pair 2 AirPods to one iCloud account
+tweet_id=44626 | author_id=125905 | text=help I logged out of my Apple ID account and the verification code is sent to a broken phone
+tweet_id=44628 | author_id=125905 | text=Do I have to do an account recovery Which I have to wait 24 hours for
+tweet_id=45159 | author_id=125972 | text=Hi guys It s me again I bought my old work computer It was wiped It turns on but gives me a password hint that doesn t work so I can t get it open Ideas Thanks
+tweet_id=48037 | author_id=126741 | text=I can able sign in at that adress with my id
+tweet_id=52267 | author_id=127754 | text=That s correct It will join unsecured networks but not two different ones requiring a password
+tweet_id=53582 | author_id=128111 | text=Hi I cannot reset the security questions after I logged in my account What to do
+tweet_id=54467 | author_id=128334 | text=Also it said I need to sign in on that page it sends me to and I have until November 2 to cancel it Does that make sense
+tweet_id=58829 | author_id=125610 | text=yes i have finished the recovery process but i can't access either of the devices i was logged into beforehand to get the verification code
+
+### connectivity
+tweet_id=1785 | author_id=116106 | text=epıl bana yardımcı olur musun telefon internet konusunda çok yakıyo napcaz
+tweet_id=2642 | author_id=116341 | text=still no reliable Bluetooth on my iPhone 8
+tweet_id=2674 | author_id=116349 | text=See how it says searching at the top instead of giving me signal I ve been dealing with that for 2 weeks and sprint did everything
+tweet_id=6702 | author_id=177854 | text=Make WiFi and Bluetooth to actually turn off I need to enter Settings everytime because of your stupid decision
+tweet_id=6797 | author_id=194102 | text=The WiFi button doesn't turn off the Wifi
+tweet_id=255553 | author_id=176774 | text=Can you bring wifi and bluetooth switch back i tired turned it off in setting it's very very inconvenient please
+tweet_id=260004 | author_id=177854 | text=Nope still WiFi is still ON y Force Touch and nothing it is still ON
+tweet_id=260005 | author_id=177855 | text=I tried this but still both WiFi and Bluetooth not getting fully disabled Could you please mention the steps
+tweet_id=327619 | author_id=194102 | text=So if i want to really turb off the WiFi this button us useless to me
+tweet_id=375298 | author_id=205000 | text=The connectivity is not the problem the problem is the phone doesn t recognize the functions when is locked sometimes unlocked too
+tweet_id=9840 | author_id=117809 | text=mi iPhone no se puede conectar a la red wifi privadas pero si a las free que hago
+tweet_id=13198 | author_id=118713 | text=Connect to
+tweet_id=13588 | author_id=118836 | text=Why do I need a sim card when I m joined to the WiFi I m only using this phone to test websites
+tweet_id=25423 | author_id=121503 | text=11 1 2 I haven't tried it yet with my little Bluetooth sound bar at home but will soon
+tweet_id=25424 | author_id=121503 | text=Bluetooth connection iPhone X to Infiniti is terrible Garbled and scratchy cutting in and out 30 of time Didn't happen W iPhone 6
+tweet_id=27508 | author_id=122018 | text=Unable to update apps when connected to WiFi
+tweet_id=29549 | author_id=122490 | text=Sometimes they're connected sometimes they're not Sometimes it even says bluetooth not available in the bar on top yet one will be connected Started after I updated
+tweet_id=29553 | author_id=122490 | text=Since the newest update my MAC won't stay connected to my mouse kb bluetooth Help
+tweet_id=30047 | author_id=122608 | text=Can anyone elaborate on this I was able to get a MMS through on the Sprint services but when connected to any wifi yes I have tried multiple it will not progress past 95 What gives why is my Iphone 7 Plus unable to do this Time to switch to
+tweet_id=30052 | author_id=122608 | text=I am so freaking tired of my iPhone not being able to send pictures in text messaging I have MMS turned on and I have reset my network settings Anyone have a suggestion
+
+### keyboard_input
+tweet_id=730 | author_id=115861 | text=Hello internet Can someone explain why this symbol keeps appearing on my phone and when I try to type the letter I Also
+tweet_id=2612 | author_id=116332 | text=While I have u as imessaging has become so impersonal frequent when will you implement italics bold etc 2 give more context to message
+tweet_id=5838 | author_id=117106 | text=When eye type the letter eye a capital A with a box next to it shows up and replaces the letter eye with a question mark in a box
+tweet_id=6791 | author_id=193646 | text=I need to leave group texts
+tweet_id=6815 | author_id=180184 | text=How do I turn this off And the dodgy keyboard it s god awful
+tweet_id=6917 | author_id=117183 | text=Yes sorry i mean iOS 11 when I texting my keyboard it s very slow and my battery it consumes very fast
+tweet_id=8321 | author_id=117460 | text=I can t believe that has not fixed the vowel text issue It s very annoying and takes extra time to write something
+tweet_id=8560 | author_id=117504 | text=If you look above you can see what I m a talking about i clicked the letter I and it still does it
+tweet_id=9178 | author_id=117648 | text=what s up with typing the letter I it wants to be an A and a box with a question mark
+tweet_id=9186 | author_id=117650 | text=It s not the exclamation point its anytime you type the letter I letter after H Others iPhone users are experiencing the same issue
+tweet_id=9187 | author_id=117650 | text=hey apple What is going on with the iPhones Every time I type the letter I I get a symbol Which you see right now
+tweet_id=1437526 | author_id=453709 | text=Having the same issue with the letter i standing alone
+tweet_id=9835 | author_id=117807 | text=Dear why is my letter I not working by itself in email or text When I type the letter I the attached happens
+tweet_id=12000 | author_id=118360 | text=what s up with the letter i man pls fix i m annoyed
+tweet_id=12574 | author_id=118510 | text=If I type letter eye it does this I
+tweet_id=12581 | author_id=118511 | text=why does I keep showing up as symbols
+tweet_id=12608 | author_id=118520 | text=Eye can t type the letter eye without it changing to a yes I reset the keyboard
+tweet_id=13945 | author_id=118931 | text=Wait why did my letter I change into weird characters
+tweet_id=13951 | author_id=118933 | text=HELP EVERYTIME I TYPE I ONLY SYMBOLS COME UP I WANT TO BE ABLE TO TALK ABOUT MYSELF
+tweet_id=14182 | author_id=119006 | text=what s up with autocorrect changing it to i t i ve already tried to do the text replacement trick and i t won t work
+
+### device_performance
+tweet_id=702 | author_id=115855 | text=Tried resetting my settings restarting my phone all that
+tweet_id=707 | author_id=115855 | text=I have an iPhone 7 Plus and yes I do
+tweet_id=733 | author_id=115863 | text=I ve got a screenshot saying my #iPhoneX is reserved for the 3rd then an email saying it s the 18th what happened
+tweet_id=736 | author_id=115864 | text=Thank you I updated my phone and now it is even slower and barely works Thank you for ruining my phone
+tweet_id=740 | author_id=115865 | text=iPhone 7 Plus
+tweet_id=1773 | author_id=116102 | text=I just get a white screen and nothing loads After a short time it just closes crashes Thanks for the reply
+tweet_id=2672 | author_id=116349 | text=Internal problem Any suggestions on how to help Im not paying for a new phone because I didn t cause the damage
+tweet_id=2676 | author_id=116349 | text=HELP ME I have a problem with my iPhone 7
+tweet_id=3761 | author_id=116620 | text=Listen I m having issues with my phone so like can you me so we can talk
+tweet_id=3764 | author_id=116621 | text=not only does my phone keep freezing but when i screenshot things it turns out white really not liking this iphone 8 plus
+tweet_id=4871 | author_id=116853 | text=Really considering getting a new kind of phone since my iPhone dies with 90 while using my camera
+tweet_id=4889 | author_id=116857 | text=And the new ones tauntingly pretend they are saved- it s just when I click on them or try to send them that the grey screen shows
+tweet_id=4890 | author_id=116857 | text=whenever I try to see the photos that I ve just taken my #iphone6 shows me this I ve reset it I ve restored it help
+tweet_id=4895 | author_id=116859 | text=iPhone 7 and it literally just started today
+tweet_id=4917 | author_id=116865 | text=why my iPhone keep dying at 30 quit playing games I'm not getting no new damn phone or iPhone x
+tweet_id=5819 | author_id=117099 | text=I can t change lock screen anymore from wallpaper in settings How do I do it now
+tweet_id=5821 | author_id=117100 | text=Dear this new update sucks I have too many problems with my phone now Blurry screen black screen frozen phone
+tweet_id=5831 | author_id=117104 | text=why does my iphone 6 is redémarrer alone
+tweet_id=6720 | author_id=180448 | text=Im using iphone 7 plus
+tweet_id=6725 | author_id=181042 | text=A barra de notificação do meu iphone sumiu e não está notificando quando chega msg
+
+### payments_billing
+tweet_id=31931 | author_id=123059 | text=Can I pay for Care online with an Apple Store gift card or do I have go into the store
+tweet_id=58162 | author_id=129203 | text=hi I need your help on restoring my purchase
+tweet_id=81839 | author_id=134130 | text=Mr Robot hasn t loaded in my purchased in several days Really getting on my nerves
+tweet_id=81841 | author_id=134131 | text=Anyone else having an issue with TV where all of your purchases are just gone any ideas
+tweet_id=105434 | author_id=139291 | text=It s usually a site trying to process a payment I m on High Sierra
+tweet_id=105435 | author_id=139291 | text=Safari on MacOS needs some serious work I have some websites that won't function et'all on Safari Most recent a payment to my IPTV service may have been lost because Safari wouldn't load
+tweet_id=122341 | author_id=143285 | text=I m having trouble accessing your website to purchase something Any chance you know when it ll be available again
+tweet_id=123116 | author_id=143497 | text=the wall plug thingy I purchased from you a few months ago is broken the divider piece inside the slot Do you fix replace
+tweet_id=125777 | author_id=144221 | text=Hey can you tell me why this keeps on popping up I m not trying to purchase anything
+tweet_id=146599 | author_id=149276 | text=I want to buy a Macbook and I see I get a 120 gift card Can I use this gift card to buy the Macbook or do I have to use it on another item
+tweet_id=146616 | author_id=149282 | text=Yess it does it shows up in my purchase history but as pending when i tried to purchase it again it told me that it s already purchased I just don t understand why the price still shows up why it asks if i wanna purchase it again but tells me its already there
+tweet_id=146671 | author_id=149294 | text=How do I get rid of this Also even if put my card info in it gets declined
+tweet_id=146726 | author_id=149311 | text=Gutted At Southampton store y day told there d no NO B Friday deals so bought MacBook Air Today email wd be 120 gift card
+tweet_id=148244 | author_id=149728 | text=Thanks for your help I see I wouldn't be eligible but student discount is fantastic enough without the extra gift card
+tweet_id=148245 | author_id=149728 | text=If I were to buy an apple product today with student discount would I be eligible to receive the black Friday event gift card
+tweet_id=149982 | author_id=136624 | text=I keep calling regarding a mental function with your software what allowed me to buy Apple store gift card for the US when I am not in the US it s been going on for three weeks now Even though the region of the world that I live comes on the Latin America and the Caribbean s
+tweet_id=151426 | author_id=150578 | text=try to buy a product from your page like I've always done The address on my card is different than the one I need the invoice for No can do in your system Fix that ASAP please What with all those locks
+tweet_id=151540 | author_id=150610 | text=Bought a laptop a week ago do I have to return and re-buy to get the gift card offered today Any other way to avoid putting a now used laptop back into your system
+tweet_id=152859 | author_id=150962 | text=Does the Apple One Day Event free gift cards also apply to purchases made with the Education pricing program
+tweet_id=154459 | author_id=151398 | text=2 2 But got additional separate charge for 140 gift card Will that additional charge be reversed eventually
+
+### mail_messages_icloud
+tweet_id=2656 | author_id=116345 | text=My iPhone has erased and re-added emails dating back from 2013 til now twice in the past 24 hours Wth
+tweet_id=2666 | author_id=116348 | text=I keep getting this error message saying the item can t be played and idk how to fix it
+tweet_id=3770 | author_id=116623 | text=this is my top bar every time I open messages on my SE after updating to iOS 11 1
+tweet_id=5844 | author_id=117107 | text=No virginmedia Tried twice with completely new mail One didn t save 2nd did though Very odd
+tweet_id=5845 | author_id=117107 | text=Updated iPad Pro to 11 1 Worked on draft email None of changes saved Started new email Saved but disappeared Help please
+tweet_id=6839 | author_id=324832 | text=notifications do not disappear after i read my emails
+tweet_id=296795 | author_id=165259 | text=I wrote you to Direct messages
+tweet_id=325925 | author_id=193646 | text=Does not work on regular texts Only iMessages Please fix it so that people can leave any group text message
+tweet_id=8318 | author_id=117460 | text=No imessage as well I
+tweet_id=8419 | author_id=117481 | text=Just phone numbers not available now why is it so hard to just put an email-address there
+tweet_id=8555 | author_id=117503 | text=okay i ll message soon thankyou for your help
+tweet_id=8574 | author_id=117508 | text=this is the second Fishing email that I have gotten in 2 days
+tweet_id=9180 | author_id=117649 | text=I bought an iTunes gift card worth 15 a week ago and the email still hasn t come into my inbox to tell me the code Helpppp
+tweet_id=59603 | author_id=129597 | text=Yes unresponsive i have blank screan need to force close and open again messages Thanks
+tweet_id=9847 | author_id=117811 | text=iMessage snapchat
+tweet_id=11133 | author_id=118105 | text=I received an error message And another when I tried to set it up again in settings
+tweet_id=12022 | author_id=118366 | text=The only keyboard I have is whatever my iPhone came with It s occurring in everything messages social media emailing ect
+tweet_id=13207 | author_id=118716 | text=It gets stuck sideways and it will go up to previous messages and not show me the latest until I close the app and reopen
+tweet_id=14306 | author_id=119044 | text=And this is on both iMessages and SMS Texts without images work fine And I just migrated from a old iPhone to a new one
+tweet_id=14841 | author_id=119210 | text=So that got me back in but now Mail won t work
+
+### media_accessories_support
+tweet_id=700 | author_id=115854 | text=why are my I s changing not showing up correctly on any of my social media platforms
+tweet_id=704 | author_id=115855 | text=This is what it looks like
+tweet_id=706 | author_id=115855 | text=Last night
+tweet_id=709 | author_id=115855 | text=I need answers because it s annoying
+tweet_id=713 | author_id=115856 | text=Just sent you all my DM
+tweet_id=721 | author_id=115859 | text=are the call centres closed for the night
+tweet_id=723 | author_id=115859 | text=hello are all the lines closed for tonight #help
+tweet_id=726 | author_id=115861 | text=Didn t work for me either
+tweet_id=727 | author_id=115861 | text=I will
+tweet_id=728 | author_id=115862 | text=We re going to need you to share the answers Angela I can t stand this
+tweet_id=742 | author_id=115865 | text=Okey Thank you
+tweet_id=749 | author_id=115866 | text=Hi What is going on Has Youtube lost it What can be done about it Thanks for the support
+tweet_id=751 | author_id=115867 | text=hello
+tweet_id=754 | author_id=115868 | text=Yes it did 11 0 3
+tweet_id=760 | author_id=115870 | text=I can not find an option to get it there It was just always there when playing
+tweet_id=762 | author_id=115870 | text=Yes
+tweet_id=1759 | author_id=116098 | text=Why is I keep changing to this and how do I stop it #anybody
+tweet_id=1763 | author_id=116100 | text=Thanks thing is I still have like 81 cents in credit and won't let me do that until I have zero credit
+tweet_id=1766 | author_id=116100 | text=Awesome thanks
+tweet_id=1770 | author_id=116101 | text=why is my home sharing not working and how do i fix it
+
+Theme-backed rule groups (source for label scores):
+software_update: ['update', 'ios', 'software', 'upgrade', 'version', 'install']
+battery_charging: ['battery', 'charge', 'charging', 'drain', 'power']
+app_store_itunes: ['app store', 'itunes', 'app', 'download', 'song', 'playlist', 'music']
+account_apple_id: ['account', 'apple id', 'login', 'password', 'sign in', 'icloud account', 'recovery']
+connectivity: ['wifi', 'bluetooth', 'network', 'connect', 'signal', 'internet']
+keyboard_input: ['keyboard', 'text', 'symbol', 'letter', 'typing', 'spell', 'input']
+device_performance: ['screen', 'crash', 'lag', 'slow', 'freeze', 'performance', 'device', 'phone']
+payments_billing: ['payment', 'purchase', 'card', 'gift card', 'billing', 'charged']
+mail_messages_icloud: ['mail', 'email', 'icloud', 'message', 'inbox', 'sync', 'messages']
+media_accessories_support: ['media', 'music', 'photos', 'home sharing', 'watch', 'charger', 'dock', 'accessory', 'support', 'dm']

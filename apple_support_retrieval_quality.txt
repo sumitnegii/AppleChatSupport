@@ -1,0 +1,5 @@
+Basic retrieval quality sanity check (historical source only, no golden labels):
+Sample size: 25
+Top-1 self-retrieval hit rate: 1.0000
+MRR@5: 1.0000
+Note: this checks same-conversation localization, not a human-reviewed gold retrieval benchmark.

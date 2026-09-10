@@ -1,0 +1,15 @@
+AppleSupport historical retrieval human judgment summary
+Evaluation file: apple_support_retrieval_human_eval.csv
+Evaluation policy: 0 irrelevant, 1 somewhat related but not useful, 2 clearly relevant/useful
+Issue similarity and AppleSupport response usefulness are logged separately.
+
+Queries reviewed: 5
+Retrieved records judged: 15
+Average issue similarity: 1.400
+Average response usefulness: 0.933
+Average relevance judgment: 1.267
+Percent clearly relevant/useful (score 2): 0.400
+Good relevance rows: 6
+Bad relevance rows: 2
+
+The above metrics are intended to show retrieval usefulness, not golden intent performance.

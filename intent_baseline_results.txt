@@ -1,0 +1,39 @@
+Intent Baseline Evaluation Report
+Source files:
+- Training source: golden_candidates.csv (weak proposed_intent labels only)
+- Evaluation source: golden_eval.csv (gold_intent labels only; ambiguous rows excluded from classifier evaluation)
+
+Training/evaluation split:
+1) Read weakly labeled training candidates from golden_candidates.csv.
+2) Use a deterministic shuffled stratified split of the weak training file: train_size=0.8, test_size=0.2, stratify=proposed_intent, random_state=42.
+3) Fit the TF-IDF vectorizer and Logistic Regression on the training split only.
+4) Evaluate on the final reviewed golden_eval.csv file only; do not use golden_eval.csv in any training step.
+
+Baseline results:
+Majority-class Accuracy: 0.0943
+Majority-class Macro F1: 0.0172
+Majority-class Per-intent F1:
+  software_update: 0.1723
+  battery_charging: 0.0000
+  app_store: 0.0000
+  account_apple_id: 0.0000
+  connectivity: 0.0000
+  keyboard_input: 0.0000
+  device_issue: 0.0000
+  payments_billing: 0.0000
+  mail_messages: 0.0000
+  media_accessories: 0.0000
+
+TF-IDF + Logistic Regression Accuracy: 0.6844
+TF-IDF + Logistic Regression Macro F1: 0.6681
+TF-IDF + Logistic Regression Per-intent F1:
+  software_update: 0.8571
+  battery_charging: 0.2439
+  app_store: 0.4865
+  account_apple_id: 0.7576
+  connectivity: 0.9020
+  keyboard_input: 0.9811
+  device_issue: 0.5455
+  payments_billing: 0.5135
+  mail_messages: 0.8333
+  media_accessories: 0.5600

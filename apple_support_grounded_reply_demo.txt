@@ -1,0 +1,91 @@
+AppleSupport grounded reply-generation demo
+Retrieval source: apple_support_conversation_index.csv
+Grounded LLM path: remote OpenAI/Azure OpenAI if credentials exist; otherwise deterministic template fallback.
+No golden_eval.csv labels or taxonomy changes were used.
+
+Query 1: battery drains after software update and phone won’t charge
+Evidence IDs: 9160, 11144, 6934
+Retrieved sim scores: 0.4166, 0.4112, 0.3876
+Customer evidence excerpt(s):
+  - conv_id=9160: It s showing it s connected and the battery is decreasing
+  - conv_id=11144: how you gon troubleshoot a charger tho
+  - conv_id=6934: after the new apple updates the battery life is really go fast and the WiFi is always on newappleupdates
+Draft reply:
+Subject: Battery Drain and Charging Issues
+
+Hi there,
+
+I understand you're experiencing battery drain and charging issues after a software update. This can be frustrating, and we're here to help. Please reach out to us via direct message so we can troubleshoot this together and ensure your device is functioning properly.
+
+Thank you for your patience!
+
+Best,  
+Apple Support
+
+**Evidence:**  
+- Conversation ID: 9160  
+- Conversation ID: 11144  
+- Conversation ID: 6934
+
+Query 2: internet keeps dropping and wifi is unreliable
+Evidence IDs: 5849, 6934, 4906
+Retrieved sim scores: 0.3230, 0.3142, 0.3132
+Customer evidence excerpt(s):
+  - conv_id=5849: 11 0 3 I updated to iOS 11 and my iPhone 6 stopped connecting to wi-fi Already restored the phone and the network connections
+  - conv_id=6934: after the new apple updates the battery life is really go fast and the WiFi is always on newappleupdates
+  - conv_id=4906: I ve updated to iOS 11 1 just now I shall check out these WiFi hotspots tomorrow and later in the week The Overlapping url over TIME on Free WiFi hotspots remains v11 0 3 Not a WiFi problem two different hotspots shown
+Draft reply:
+Subject: Wi-Fi Connectivity Issues
+
+Hi there,
+
+I understand that you're experiencing unreliable Wi-Fi and frequent drops. Based on previous cases, updating your device to the latest iOS version can often help resolve connectivity issues. If you haven't already, please consider updating to the latest iOS and testing your connection again.
+
+If the problem persists, feel free to reach out for further assistance.
+
+Best regards,  
+Apple Support
+
+Evidence: [EVIDENCE #1, EVIDENCE #3]
+
+Query 3: keyboard is slow and autocorrect takes letters too late
+Evidence IDs: 9152, 12000, 13945
+Retrieved sim scores: 0.5663, 0.5499, 0.5495
+Customer evidence excerpt(s):
+  - conv_id=9152: Well I was running 11 0 3 and now 11 1 Issue persists Hey what s up with this new autocorrect Happening on iPhone 7 Plus and iPhone 7 I m having the same issue Just started today Having the same issue Everyone has this i
+  - conv_id=12000: a couple of days ago it s been happening on a few of my friends phones as well Saturday what s up with the letter i man pls fix i m annoyed It s happening in all my apps I m thinking there s a problem with the keyboard
+  - conv_id=13945: Wait why did my letter I change into weird characters
+Draft reply:
+Subject: Keyboard and Autocorrect Issues
+
+Hi there,
+
+I understand you're experiencing slow keyboard response and autocorrect issues. This has been reported by other users as well, and it seems to affect various apps. To assist you better, could you please confirm which iOS version you are using and if this issue occurs across all apps or just specific ones? 
+
+Thank you for your patience as we work through this together.
+
+Best,  
+Apple Support
+
+Evidence: 9152, 12000, 13945
+
+Query 4: mail and messages are stopped syncing with iCloud
+Evidence IDs: 2656, 14838, 5845
+Retrieved sim scores: 0.4364, 0.4206, 0.4172
+Customer evidence excerpt(s):
+  - conv_id=2656: 11 0 3 newest version of iOS and iPhone 7 My iPhone has erased and re-added emails dating back from 2013 til now twice in the past 24 hours Wth
+  - conv_id=14838: Help My computer has been like this since yesterday I need it I don t know what to do iOS 11 is draining the battery on my iPhone 7 twice as fast as iOS 10 Help Thanks Re-installing MacOS right now gonna see if that work
+  - conv_id=5845: No virginmedia Tried twice with completely new mail One didn t save 2nd did though Very odd Updated iPad Pro to 11 1 Worked on draft email None of changes saved Started new email Saved but disappeared Help please
+Draft reply:
+Subject: iCloud Syncing Issue
+
+Hi there,
+
+I understand that you're experiencing issues with Mail and Messages not syncing with iCloud. Based on previous conversations, I recommend ensuring your device is updated to the latest iOS version, as syncing issues can sometimes be resolved with updates. Additionally, if you continue to have trouble, please provide more details about your device and the specific issues you're encountering.
+
+Let us know how it goes!
+
+Best,  
+Apple Support
+
+**Evidence:** 2656, 14838, 5845

@@ -1,0 +1,114 @@
+AppleSupport historical conversation retrieval demo
+Source conversation reconstruction file: apple_support_conversations.csv
+Retrieval model: SentenceTransformer all-MiniLM-L6-v2
+Index type: conversation-level, embedding search over aggregated AppleSupport conversation transcripts
+
+Important: no golden_eval.csv labels were used to build the retrieval index.
+
+Query 1: battery drains after software update and phone won’t charge
+  Rank 1 conversation_id=9160 score=0.4166
+    matched_customer_excerpt=It s showing it s connected and the battery is decreasing
+    support_excerpt=We are here for you Let s take a look at this further for you Reach out to us in DM We want to make sure you can charge and enjoy your new phone Is it not showing as connected to power when plugged in
+    messages_in_conversation=3 customer_turns=1 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 2 conversation_id=11144 score=0.4112
+    matched_customer_excerpt=how you gon troubleshoot a charger tho
+    support_excerpt=We d like to investigate with you Send us a DM and we can troubleshoot more from there
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 3 conversation_id=6934 score=0.3876
+    matched_customer_excerpt=after the new apple updates the battery life is really go fast and the WiFi is always on newappleupdates
+    support_excerpt=We d love to help Let s work on this together in DM Start by letting us know what kind of device you are using
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 4 conversation_id=4901 score=0.3821
+    matched_customer_excerpt=I have and my battery life has become even worse Please fix the battery issues in Ios 11
+    support_excerpt=We want to make sure you have a working battery Have you had a chance to update to the latest 11 1 Let s look into this further in DM
+    messages_in_conversation=4 customer_turns=2 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 5 conversation_id=2616 score=0.3773
+    matched_customer_excerpt=Yes after the update I Phone 7 why is my battery life short I updated to 11 1 my battery is poor Wife didn t she likes her battery life
+    support_excerpt=Let s work together on this situation To clarify did this start after updating to iOS 11 1 Also which device are you using Got it Does this happen while using any particular App or feature Let us know via a DM We ll keep moving forward from
+    messages_in_conversation=4 customer_turns=2 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+
+Query 2: internet keeps dropping and wifi is unreliable
+  Rank 1 conversation_id=5849 score=0.3230
+    matched_customer_excerpt=11 0 3 I updated to iOS 11 and my iPhone 6 stopped connecting to wi-fi Already restored the phone and the network connections
+    support_excerpt=We are here to help So we can best isolate the cause could you verify your exact iOS version Got it From here let s update to iOS version 11 1 then test to see if the issue persists
+    messages_in_conversation=4 customer_turns=2 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 2 conversation_id=6934 score=0.3142
+    matched_customer_excerpt=after the new apple updates the battery life is really go fast and the WiFi is always on newappleupdates
+    support_excerpt=We d love to help Let s work on this together in DM Start by letting us know what kind of device you are using
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 3 conversation_id=4906 score=0.3132
+    matched_customer_excerpt=I ve updated to iOS 11 1 just now I shall check out these WiFi hotspots tomorrow and later in the week The Overlapping url over TIME on Free WiFi hotspots remains v11 0 3 Not a WiFi problem two different hotspots shown
+    support_excerpt=We d like to have you backup and update your iPhone to iOS 11 1 and let us know if that helps Sounds good Let us know the results in DM and we ll continue working with you there Thanks again
+    messages_in_conversation=4 customer_turns=2 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 4 conversation_id=11111 score=0.3123
+    matched_customer_excerpt=The whole phone will just crash or freeze for over a minute It be spazzing out too like it has a ghost in it or something 11 0 3
+    support_excerpt=We d like to help What s going on Thanks We ll help get to the bottom of this together What version of iOS are you currently running We d like to suggest updating to iOS 11 1 which came out today and see if the same issues continue
+    messages_in_conversation=5 customer_turns=2 support_turns=3
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 5 conversation_id=13211 score=0.3111
+    matched_customer_excerpt=what is happening with my phone I wrote I got and that happened
+    support_excerpt=We can look into this issue together Send us a DM and let s begin
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+
+Query 3: keyboard is slow and autocorrect takes letters too late
+  Rank 1 conversation_id=9152 score=0.5663
+    matched_customer_excerpt=Well I was running 11 0 3 and now 11 1 Issue persists Hey what s up with this new autocorrect Happening on iPhone 7 Plus and iPhone 7 I m having the same issue Just started today Having the same issue Everyone has this issue
+    support_excerpt=Let s take a look at this issue together Which iOS version is your device currently running Thanks Please DM us and we ll continue this conversation there Lets help get this sorted Please DM us the version of iOS you re using and we can go
+    messages_in_conversation=9 customer_turns=5 support_turns=4
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 2 conversation_id=12000 score=0.5499
+    matched_customer_excerpt=a couple of days ago it s been happening on a few of my friends phones as well Saturday what s up with the letter i man pls fix i m annoyed It s happening in all my apps I m thinking there s a problem with the keyboard
+    support_excerpt=You ve come to the right place May we ask when you started to notice the situation Thank you for that info Is this happening with all the apps or only a select few Thank you for confirming that Let s discuss this further in DM
+    messages_in_conversation=7 customer_turns=4 support_turns=3
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 3 conversation_id=13945 score=0.5495
+    matched_customer_excerpt=Wait why did my letter I change into weird characters
+    support_excerpt=We d like to look into this Does this happen in all apps you use the keyboard with Which device is this happening on
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 4 conversation_id=14182 score=0.5096
+    matched_customer_excerpt=what s up with autocorrect changing it to i t i ve already tried to do the text replacement trick and i t won t work
+    support_excerpt=We ll do everything we can to help get this resolved What type of device are you using and which version of the operating system is currently installed Tell us the answers via DM We ll meet up with you there
+    messages_in_conversation=2 customer_turns=1 support_turns=1
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 5 conversation_id=12023 score=0.5053
+    matched_customer_excerpt=The only keyboard I have is whatever my iPhone came with It s occurring in everything messages social media emailing ect
+    support_excerpt=We can help What keyboards do you have added Is this issue only occurring in messages or in other applications as well We d like to take a closer look Send us a DM and we can start there
+    messages_in_conversation=3 customer_turns=1 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+
+Query 4: mail and messages are stopped syncing with iCloud
+  Rank 1 conversation_id=2656 score=0.4364
+    matched_customer_excerpt=11 0 3 newest version of iOS and iPhone 7 My iPhone has erased and re-added emails dating back from 2013 til now twice in the past 24 hours Wth
+    support_excerpt=Got it We d recommend backing up and updating your device to 11 1 and test things out further Keep us posted on the results Since we just released iOS 11 1 today can you clarify which exact version you have installed We ll be happy to look
+    messages_in_conversation=6 customer_turns=3 support_turns=3
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 2 conversation_id=14838 score=0.4206
+    matched_customer_excerpt=Help My computer has been like this since yesterday I need it I don t know what to do iOS 11 is draining the battery on my iPhone 7 twice as fast as iOS 10 Help Thanks Re-installing MacOS right now gonna see if that works So that got me bac
+    support_excerpt=We d like to gather some more information for better troubleshooting Can you DM us the country you are located in Use the link below to send us a Direct Message We ll meet you there and we can work towards a resolution together What happens
+    messages_in_conversation=8 customer_turns=5 support_turns=3
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 3 conversation_id=5845 score=0.4172
+    matched_customer_excerpt=No virginmedia Tried twice with completely new mail One didn t save 2nd did though Very odd Updated iPad Pro to 11 1 Worked on draft email None of changes saved Started new email Saved but disappeared Help please
+    support_excerpt=We ll help in any way we can Was this on an email account Some accounts may create separate folders for your Drafts If you re still having trouble please DM us here
+    messages_in_conversation=4 customer_turns=2 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 4 conversation_id=13208 score=0.3414
+    matched_customer_excerpt=It gets stuck sideways and it will go up to previous messages and not show me the latest until I close the app and reopen
+    support_excerpt=We re glad you re excited about the emojis Let us help with iMessage What s going on Got it Which device are you experiencing this on Let us know in DM and we ll go from there
+    messages_in_conversation=3 customer_turns=1 support_turns=2
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
+  Rank 5 conversation_id=11134 score=0.3378
+    matched_customer_excerpt=I received an error message And another when I tried to set it up again in settings My Touch ID failed when I restarted my phone Now it s not working at all Tried the steps Still receiving an error message Just updated to iOS 11 1 and got t
+    support_excerpt=Did you receive an error message or were you just prompted to enter in the passcode for your iOS device after the restart Let s give the steps in this article a try and keep us posted on the results please Alright let s continue working on
+    messages_in_conversation=6 customer_turns=3 support_turns=3
+    why_relevant=conversation shares both lexical and semantic overlap with the customer issue and AppleSupport reply pattern.
