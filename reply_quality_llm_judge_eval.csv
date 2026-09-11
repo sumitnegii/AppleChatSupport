@@ -1,0 +1,293 @@
+query,generated_reply,evidence_ids,provider_used,model_used,remote_request_succeeded,factual_grounding,helpfulness,relevance,unsupported_claims,overall_quality,notes,judge_factual_grounding,diff_factual_grounding,judge_helpfulness,diff_helpfulness,judge_relevance,diff_relevance,judge_unsupported_claims,diff_unsupported_claims,judge_overall_quality,diff_overall_quality,judge_rationale
+@AppleSupport after update of ios 11.0.2 my iphone 6s screen freeze and phone has become slow with battery drain . Please help,"Hi there,
+
+It sounds like the update to iOS 11.0.2 may be causing the slowdown, freezes, and battery drain you’re experiencing. In similar cases, updating to the latest iOS 11.1 release has resolved these issues.  
+
+Could you let us know:
+1. Which iPhone 6s model you have (6s or 6s",736|3764|4901,groq,openai/gpt-oss-20b,True,1,1,2,1,1,"Relevant update evidence, but says iOS 11.1 'resolved' the issues without enough support; reply is also truncated.",2,1,1,0,2,0,0,-1,1,0,"The draft is fully grounded in the retrieved evidence, which consistently suggests updating to iOS 11.1 to resolve performance and battery issues. It is directly relevant to the customer's specific complaints. However, the reply is truncated mid-sentence ('6s or 6s'), making it incomplete and less helpful as a final response. There are no unsupported claims; the suggestion to update is supported by the historical cases."
+"@AppleSupport my iPhone7 used to be able to last one day w/o charging. however, since updating to the latest iOS it has drained my phone’s battery life - i have to charge it &gt; once a day now. i have resorted to disable certain features on “Settings” but no improvement at all.","Hi there,
+
+I’m sorry to hear about the battery drain after the update. To help troubleshoot, could you let me know:
+
+1. Which iOS version you’re currently running (e.g., iOS 11.1, 12.x, etc.)  
+2. If you’ve noticed the issue only with certain apps or when using specific features.  
+
+Once I have those details, I can guide you through the next steps to improve battery life.
+
+Thanks for your patience.  
+
+**Evidence**  
+- #15433  
+- #2616  
+- #12010",15433|2616|12010,groq,openai/gpt-oss-20b,True,2,2,2,2,2,Directly addresses post-update battery drain and asks useful diagnostic questions.,2,0,2,0,2,0,0,-2,2,0,"The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for the specific iOS version and whether the issue is tied to specific apps or features. The reply is not truncated, is directly relevant to the customer's complaint about battery drain after an update, and asks appropriate clarifying questions without making unsupported claims or promises."
+"@AppleSupport yes, sorry maybe I didnt explain properly, my phone is less than 30 hours old, I had to update to latest version of iOS before I could install from back up. Back up didnt include music though so had to re-add music, about 30% failed","Thank you for reaching out. I see you updated to the latest iOS and are having trouble re‑adding music after restoring from backup. The historical conversations we have do not cover this specific scenario, so I’m unable to provide a targeted solution at this time. If you need further help, please let us know and we’ll do our best to assist you.
+
+**Evidence used:** #1, #2, #3",15315|5829|13931,groq,openai/gpt-oss-20b,True,1,1,1,1,1,"Correctly recognizes the music-restore problem, but evidence is not clearly tied to the scenario and evidence labels are not actual IDs.",2,1,1,0,2,1,0,-1,1,0,"The reply is factually grounded as it correctly identifies that the retrieved historical evidence (which concerns iOS 11.1 battery issues and general update complaints) does not contain specific solutions for the customer's current issue (music restoration failure after a fresh iOS update). It avoids inventing facts or making unsupported claims. However, it scores low on helpfulness because it provides no actionable troubleshooting steps (such as checking iTunes/Finder logs, re-syncing, or contacting human support via DM) and simply states an inability to help based on the limited evidence, which is a weak support response."
+@AppleSupport how do I apply a visa gift card plus my credit card for payment online?,"I’m sorry, but I don’t have any historical evidence that explains how to apply a Visa gift card in combination with a credit card for online purchases. The retrieved conversations cover unrelated topics such as missing charges, unexpected app fees, and missing iTunes gift‑card codes.
+
+**Evidence used:** #1, #2, #3
+
+If you need guidance on using multiple payment methods, you might want to check Apple’s official support pages or contact Apple Support directly for the most accurate instructions.",8579|12602|9180,groq,openai/gpt-oss-20b,True,1,1,1,1,1,"Cautious about missing evidence, but then points to external support pages, which is outside the historical-evidence grounding requirement.",2,1,1,0,2,1,0,-1,1,0,"The draft is fully grounded in the retrieved evidence, correctly identifying that the historical cases (missing charges, iTunes codes, app fees) are unrelated to the user's query about payment methods. It accurately states the limitation of the provided evidence. However, it scores 1 on helpfulness because it fails to provide any actionable guidance or specific steps for the user's question, merely suggesting they contact support or check official pages, which is a low-effort response for a support agent. It is not truncated and contains no unsupported claims."
+@AppleSupport Just the music app is giving me issues... 11.1.1 and it’s deleting the music I have. Not all the songs are downloading properly. My albums are disappearing or breaking. Getting sick of it. It hasn’t worked properly since I updated to iOS 11,"Hi there,
+
+I’m sorry to hear that the Music app is causing issues with your library and downloads on iOS 11.1.1. We want to help you get back to enjoying your music.
+
+Could you please send us a DM with your specific device model? We’d like to investigate this further with you to troubleshoot the problem.
+
+Best regards,
+Apple Support
+
+**Evidence:**
+*   Conversation ID 11101 (Troubleshooting Music app issues on iOS 11.1; request for device model and DM)
+*   Conversation ID 2632 (Request for device model and iOS version)
+*   Conversation ID 1791 (Acknowledgment of iOS 11.1 update issues)",1791|2632|11101,groq,qwen/qwen3.8-27b,True,2,2,2,0,2,Strong match to the Music-app issue; DM and device-model request are consistent with the cited historical examples.,2,0,1,-1,2,0,0,0,1,-1,"The reply is fully grounded in the retrieved evidence, specifically mirroring the diagnostic approach in Conversation ID 11101 (requesting device model and DM for further investigation). It is relevant to the specific issue (Music app on iOS 11.1.1). However, it scores 1 on helpfulness because it provides no immediate troubleshooting steps or acknowledgment of the specific symptoms (deleting music, broken albums) beyond a generic apology. It relies entirely on a follow-up DM for resolution, which is a passive support strategy compared to providing immediate actionable advice. There are no unsupported claims or truncation issues."
+"@AppleSupport I made a full reset and reinstall from iTunes, several times without restoring from any backup. Deleting the app does not change this behavior neither. This bug happens randomly when listening, searching or downloading music. On a fresh new iPhone and since iOS 7 I don’t remember","Hi there,
+
+It sounds similar to the issues that have been reported after recent iOS updates. In a few cases, simply restarting the device has cleared the problem (see conversation 4879). If you haven’t already, please try a full restart of your iPhone and let us know whether the music, search, and download functions return to normal. If the issue persists, please share your current iOS version so we can investigate further.
+
+Thanks for your patience.
+
+**Evidence**  
+- Conversation 4896  
+- Conversation 11101",4896|11101|4879,groq,openai/gpt-oss-20b,True,1,1,2,1,1,"Music problem is relevant, and restart is supported by cited history, but the evidence mapping is weak and the response overgeneralizes from a different case.",1,0,1,0,2,0,1,0,1,0,"The draft is not truncated and is relevant to the customer's issue with Apple Music. However, it fails to acknowledge the customer's explicit statement that they have already performed a full reset and reinstall, making the suggestion to 'try a full restart' redundant and slightly unhelpful. Furthermore, the claim that the issue is 'similar to issues reported after recent iOS updates' is weakly grounded; the retrieved evidence shows issues occurring after updates (4896, 11101), but the customer states the bug has existed since iOS 7, which contradicts the implication that it is a recent update-specific bug. The evidence citation lists 4896 and 11101, but the text references 4879, creating a minor inconsistency."
+"@AppleSupport hey, how would I keep adding songs to a custom downloaded playlist from Apple Music? I keep adding songs but do not appear","Hi there,
+
+I’m sorry you’re having trouble adding songs to your downloaded playlist. In a similar situation, restarting the device helped the customer resolve the issue. If you haven’t already, try restarting your iPhone and then adding the songs again. If the problem continues, let us know your iOS version and we’ll look into it further.
+
+Thanks for reaching out – we’re here to help.
+
+**Evidence**  
+- Conversation #4879 (customer: “Can’t add songs to playlists”; support: “We re glad to hear that resolved the issue” and mention restarting)",4879|2666|2632,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Very close match to historical playlist problem; restart recommendation is explicitly grounded.,2,0,1,-1,2,0,0,0,1,-1,"The reply is fully grounded in Conversation #4879, which explicitly links restarting the device to resolving issues with adding songs to playlists. It is directly relevant to the customer's specific complaint. However, helpfulness is rated as 1 because the advice is somewhat generic and relies on a single troubleshooting step (restart) derived from a potentially different context (download issues vs. playlist addition), without offering more specific guidance for Apple Music playlist syncing or checking for greyed-out items (as seen in Conv #2666). The reply is not truncated and contains no unsupported claims."
+"@AppleSupport Please fix the update... battery drains like crazy, went from fully charge to 5% in 4.5 hours standby, didn't even use it!!!!!","Hi there,
+
+It sounds like the battery drain started after the recent iOS update.  
+Could you let us know:
+
+1. Which iPhone model you’re using?  
+2. Whether you’ve updated to the latest iOS 11.1 release?  
+3. If the rapid drain happens with any particular app or feature.
+
+Once we have that info, we can look into the battery usage details and see what steps might help.  
+
+Thanks for your patience.  
+
+**Evidence**: #2, #3",3767|4901|2616,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good battery/update match and useful follow-up questions; no major unsupported claim.,2,0,2,0,2,0,0,0,2,0,"The draft is fully grounded in the retrieved evidence, which consistently involves iOS 11.1 battery drain issues and standard diagnostic questions (device model, specific apps, update status). It is not truncated, is highly relevant to the customer's complaint about post-update battery drain, and contains no unsupported claims or false promises. It appropriately asks for necessary details to proceed with troubleshooting."
+@AppleSupport @116333 It would be great if you guys introduce gift cards or other payment methods like online banking or through third party apps like Paytm. Google has all of those methods mentioned above.I feel like lots of people wanting to buy stuffs but are unable due very limited payment options,"Thank you for sharing your feedback.  
+We appreciate your suggestion about adding gift‑card and alternative payment options. While we don’t have any historical evidence that Apple has introduced these methods, we will forward your comments to the relevant team for consideration.
+
+**Evidence**  
+- #1 (conversation_id 12602)  
+- #2 (conversation_id 8579)  
+- #3 (conversation_id 11996)",12602|8579|11996,groq,openai/gpt-oss-20b,True,1,1,1,2,1,"Acknowledges feedback well, but 'we will forward your comments' is an unsupported organizational action and retrieved evidence is not directly relevant.",0,-1,1,0,2,1,2,0,0,-1,"The draft reply fails on factual grounding because it cites three conversation IDs (12602, 8579, 11996) as evidence for the claim that Apple has not introduced gift cards or alternative payment methods. The retrieved evidence for these IDs discusses credit card charges, general service options, and unrecognized charges, none of which support the specific claim about the absence of gift cards or Paytm. This constitutes a significant unsupported claim and a misrepresentation of the retrieved data. While the reply is relevant to the customer's request and not truncated, the hallucinated evidence makes it factually incorrect and low quality."
+@AppleSupport ever since the iOS 11.1.2 update my iPad Pro battery drains 2x as fast and frequently stops charging while in use. Even when I put it in airplane mode to charge it takes 2x as long. Please fix this. This is my lifeline at school!,"Hi there,
+
+I’m sorry to hear about the battery issue after the iOS 11.1.2 update.  
+To help us investigate, could you let us know:
+
+1. Which exact iOS version you’re currently running (you can find it in Settings → General → About).  
+2. When the battery drain started to worsen (e.g., after a specific update or over a certain period).
+
+Once we have those details, we’ll look into possible solutions for you.
+
+Thank you for your patience.
+
+—Apple Support
+
+**Evidence**  
+- Conversation 4901  
+- Conversation 2628  
+- Conversation 14212",4901|2628|14212,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good match to battery/charging after update and asks appropriate diagnostic details.,2,0,1,-1,2,0,0,0,1,-1,"The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for the specific iOS version and the timeline of the issue to begin troubleshooting. It is not truncated. However, it scores 1 on helpfulness because the customer explicitly stated they are on iOS 11.1.2 and that the issue started after that update. Asking for information the customer has already provided is redundant and less helpful than acknowledging the provided details and moving to the next diagnostic step (e.g., checking battery health or resetting settings), which would be more appropriate for a support interaction."
+"@AppleSupport downloaded iOS 11.0.2 ;now the majority of my apps crash, I can’t make phonecalls because my screen then freezes and resets!?","Hi there,
+
+We are sorry to hear that you are experiencing crashes and screen freezes after updating to iOS 11.0.2. Based on similar reports, we suggest updating your device to iOS 11.1 to see if these issues resolve.
+
+Please let us know if the problem persists after the update so we can look into this further with you.
+
+**Evidence:**
+*   Conversation ID 11111: Support suggested updating to iOS 11.1 for users experiencing crashes/freezes on iOS 11.0.3.
+*   Conversation ID 1779: Support verified iOS version and assisted with app/call issues on iOS 11.",11111|15467|1779,groq,qwen/qwen3.8-27b,True,2,2,2,0,2,Strong historical match for crashes/freezes after iOS update; concrete next step is grounded.,2,0,2,0,2,0,0,0,2,0,"The draft is fully grounded in the retrieved evidence, specifically Conversation ID 11111, which suggests updating to iOS 11.1 for users experiencing crashes and freezes on iOS 11.0.x. The reply is relevant, directly addressing the customer's specific issues (crashes, screen freezes, inability to make calls) by offering a concrete, evidence-based solution. It is not truncated, is polite, and invites further interaction if the issue persists. There are no unsupported claims or invented policies."
+@AppleSupport I dm’ed you but I’m sure you’re not going to help because support teams never do anything to help the people!,"Hi there,
+
+Thanks for reaching out. We’re sorry you’re feeling frustrated. We’re here to help—please DM us with the details of the issue and we’ll look into it right away.
+
+**Evidence**  
+- #1 (conversation_id 14334)  
+- #2 (conversation_id 11661)  
+- #3 (conversation_id 2662)",14334|11661|2662,groq,openai/gpt-oss-20b,True,1,1,1,0,1,"Appropriate empathetic response, but the underlying issue is unspecified and evidence cannot substantively support a solution.",2,1,2,1,2,1,0,0,2,1,"The draft reply is fully grounded in the retrieved historical evidence, which consistently directs customers to DM for support. It is not truncated, is clearly helpful by providing a direct call to action (DM with details), and is directly relevant to the customer's complaint about lack of support. There are no unsupported claims; the promise to 'look into it' aligns with the historical support responses."
+"@AppleSupport this needs investigation, apple watch not supporting original charger https://t.co/LevhLVeBzw","Hi there!  
+It sounds like your Apple Watch isn’t charging with its original charger. Let’s get a closer look. Please send us a DM so we can walk through some troubleshooting steps together and determine the best next steps.  
+
+**Evidence**  
+- Conversation #2 (troubleshooting charger)  
+- Conversation #3 (charger not working, DM invitation)",4912|11144|2640,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good match to Watch/charger issue; DM escalation is consistent with historical support behavior.,2,0,2,0,2,0,0,0,2,0,"The draft reply is fully grounded in the retrieved evidence, specifically mirroring the support actions in Conversation #11144 (inviting the customer to DM for troubleshooting) and #2640 (investigating charger issues). It is relevant to the customer's specific complaint about the Apple Watch charger. The reply is not truncated, is actionable, and contains no unsupported claims or invented policies."
+"@AppleSupport Why is predictive text changing the letter “I” to I️? I️ reset my keyboard, turned my phone on/off, and it’s still doing it.","Hi there,
+
+It sounds like the same issue you’ve seen in the past where the “I” key turns into a strange character. To help us investigate further, could you let us know:
+
+1. Which iPhone model you’re using?  
+2. Does the problem appear in all apps (e.g., Messages, Safari, Mail) or only specific ones?  
+3. Have you tried switching to a different keyboard language or resetting the keyboard layout again?
+
+Once we have that information, we can look into possible fixes.
+
+Thanks for your patience.
+
+**Evidence**  
+- #13945  
+- #12000  
+- #12023",13945|12000|12023,groq,openai/gpt-oss-20b,True,2,1,2,1,1,"Excellent issue match, but suggesting another keyboard reset after the user already tried it is weak and switching keyboard language is not clearly supported.",2,0,2,1,2,0,0,-1,2,1,"The draft is fully grounded in the retrieved evidence, correctly identifying the issue as a recurring problem where the letter 'I' changes to a strange character (referencing cases #13945, #12000, #12023). It is not truncated. The reply is helpful and relevant, asking specific diagnostic questions (model, scope of apps, previous attempts) that align with the support actions taken in the historical cases. There are no unsupported claims or invented policies."
+@AppleSupport After installing the new iOS update (6 plus) my battery is eating energy! Within 3 hrs 45% left .... what’s your solution???,"Hi there,
+
+It sounds like the battery drain started after the recent update. To help you best, we’d like to confirm a few details:
+
+1. Which iOS version did you install? (e.g., iOS 11.1 or another version)  
+2. What device are you using?  
+3. Does the drain happen with any particular app or feature?
+
+Once we have that information, we can look into possible solutions. Please let us know or share the details via a direct message.
+
+Thanks for",4901|2628|2616,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good battery/update match and sensible diagnostic questions; reply is truncated at the end.,2,0,1,-1,2,0,0,0,1,-1,"The reply is fully grounded in the historical evidence, mirroring the diagnostic questions (iOS version, device, specific apps) and the suggestion to move to DMs found in the retrieved cases. It is directly relevant to the customer's complaint about battery drain after an update. However, the reply is truncated at the end ('Thanks for'), which renders it incomplete and unprofessional, significantly reducing its helpfulness and overall quality despite the correct content."
+"@AppleSupport updated phone now apps constantly crash or won’t open, phone lags super slow or freezes very often. Resetting constantly help?","Hi there, I’m sorry to hear your phone is experiencing crashes, lag, and freezing after the update.
+
+Based on similar past cases, support agents typically ask for the specific iOS version you are running to determine if a newer patch (such as iOS 11.1 in historical examples) might resolve the issue. While resetting is a common temporary fix mentioned by users, it is not a permanent solution. Please let us know your current iOS version so we can guide you on the next steps.
+
+Evidence:
+- Conversation ID 11111 (Agent requested iOS version and suggested updating to a newer patch to test if issues continued)
+- Conversation ID 14311 (Customer mentioned frequent resetting; agent moved conversation to DM for further review)
+- Conversation ID 9190 (Agent acknowledged lag/glitching issues and moved conversation to DM)",9190|11111|14311,groq,qwen/qwen3.8-27b,True,1,1,1,2,1,"Relevant crash/lag evidence, but claims resetting is a 'common temporary fix' and 'not permanent' without clear support.",2,1,1,0,2,1,0,-2,1,0,"The reply is fully grounded in the retrieved evidence, correctly citing the practice of asking for the iOS version and the temporary nature of resets. It is directly relevant to the customer's query. However, it scores 1 on helpfulness because it is passive; it asks for information but does not provide immediate actionable troubleshooting steps (like force restarting or checking storage) which would be expected in a first-line support response. It is not truncated and contains no unsupported claims."
+"@AppleSupport iPhone 8 AirDrop problem! Tried every single method on the internet no joy! Turn old iPho 6 on instant connection! all setting exactly the same. Reset network connections, Logged out/in iCloud, reset all BT and wifi settings on iMac late 2013, and iPho on ios11.1.2","Hi there, we are here to help isolate the cause of your AirDrop issue. Since you are currently on iOS 11.1.2, could you please verify your exact iOS version and ensure you have the latest updates installed? We recommend sending us a DM so we can check on more options for you.
+
+Evidence:
+- Conversation ID 5849: Support requested exact iOS version to isolate Wi-Fi connection issues after iOS 11 update.
+- Conversation ID 2624: Support noted iOS 11.1 contained bug fixes and requested a DM to investigate further.
+- Conversation ID 12569: Support requested current iOS version and suggested a DM to check on more options.",5849|2624|12569,groq,qwen/qwen3.8-27b,True,1,1,1,1,1,AirDrop query is only loosely supported by Wi-Fi/update evidence; asking for an exact version is repetitive because the user already supplied iOS 11.1.2.,2,1,1,0,2,1,0,-1,1,0,"The draft is fully grounded in the retrieved evidence, correctly citing the pattern of requesting exact iOS versions and suggesting DMs for further investigation (seen in IDs 5849, 2624, and 12569). It is not truncated. However, it scores low on helpfulness because it asks the customer to verify an iOS version they have already explicitly stated in the query (iOS 11.1.2), which is redundant and ignores the specific AirDrop context in favor of generic troubleshooting steps found in the historical logs. While relevant to the device and OS, it fails to provide actionable troubleshooting for the specific AirDrop issue described."
+"@AppleSupport @115858 Since software update to latest ios version iPhone6 is constantly facing issue of system hanged out,kindly chk n update","Hi there,
+
+It sounds like the recent iOS update is causing your iPhone 6 to hang. To help you troubleshoot, could you please let us know:
+
+1. Which exact iPhone 6 model you have (e.g., 6, 6 Plus, 6s, 6s Plus).  
+2. The iOS version currently installed (you can find this in Settings → General → About).  
+3. Any steps you’ve already tried (e.g., restarting, force‑closing apps, checking for additional updates).
+
+Once we have that information, we can guide you through the next steps to resolve the issue.
+
+Thanks for reaching out – we’re here to help!
+
+**Evidence**  
+- Conversation 10691 – shows similar post‑update glitches and the need for more details.  
+- Conversation 1779 – includes asking for model and iOS version, and steps tried.  
+- Conversation 736 – also requests model, iOS version, and troubleshooting steps.",10691|1779|736,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Strong match to post-update hanging/glitching; requested details closely follow historical support patterns.,2,0,2,0,2,0,0,0,2,0,"The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for specific model details, iOS version, and troubleshooting steps for post-update issues. It is not truncated, is clearly helpful and actionable, and directly addresses the customer's report of system hangs. There are no unsupported claims or invented policies."
+Am I the only one whose phone is burning up now that I’ve updated my software to the latest version of iOS? @AppleSupport,"Hi there,
+
+We’ve seen a few customers report similar problems after updating to the latest iOS, such as battery performance issues and device overheating. To help us investigate, could you let us know:
+
+* The exact iOS version you’re running  
+* Your iPhone model (e.g., iPhone 12, iPhone 13, etc.)
+
+Once we have that information, we can look into potential fixes or work‑arounds for your situation.
+
+Thanks for reaching out!  
+
+**Evidence**  
+- Conversation 5821  
+- Conversation 14867  
+- Conversation 4917",5821|14867|4917,groq,openai/gpt-oss-20b,True,1,1,1,1,1,"Post-update overheating is plausible, but the cited evidence does not clearly establish the claimed battery/overheating similarity.",2,1,2,1,2,1,0,-1,2,1,"The draft is fully grounded in the retrieved evidence, which shows multiple customers reporting battery and performance issues after iOS updates. It correctly identifies the user's specific complaint (overheating) as part of a broader pattern of post-update issues seen in the history (battery/performance). The reply is helpful, actionable, and asks for the necessary diagnostic information (iOS version and model) consistent with the support actions in the historical cases. There are no unsupported claims or guarantees."
+"@AppleSupport , I just wanted to let you know that this is the second time facing a problem (sudden shutdown) with my iPhone which lead me to restore, delete everything and fresh install due to your recent software updates. Pls fix this issue quickly!!","Hi there,  
+I’m sorry to hear you’re experiencing sudden shutdowns again.  
+To help us investigate, could you please let us know:
+
+1. Which iPhone model you’re using (e.g., iPhone 7, iPhone 12, etc.)  
+2. The exact iOS version installed  
+3. Whether the issue occurs after a restart or only after a software update  
+
+Once we have those details, we can look into the problem further.  
+
+Thanks for your patience.  
+
+**Evidence**  
+- #1 (conversation_id 8548)  
+- #2 (conversation_id 4896)  
+- #3 (conversation_id 2628)",8548|4896|2628,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good match to sudden shutdown after updates and asks useful troubleshooting details.,2,0,2,0,2,0,0,0,2,0,"The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for device model, iOS version, and restart behavior to diagnose shutdown issues. It is not truncated, is clearly helpful and actionable, directly addresses the customer's specific complaint about sudden shutdowns after updates, and contains no unsupported claims or false promises."
+@AppleSupport hii I updated my phone and now my Apple Music is not working I can’t see any of the songs I have downloaded only the purchased ones from iTunes can you pls sort this.. What am I paying for?? 🙄,"Hi there, thanks for reaching out. We’re sorry to hear you’re having trouble with Apple Music after your update.
+
+To help us investigate, could you please let us know which iOS version you are currently running? Additionally, please try restarting your device to see if that resolves the issue. If the problem persists, we can continue supporting you via DM.
+
+Evidence:
+- Conversation ID 4879 (Restarting device; requesting iOS version)
+- Conversation ID 2632 (Requesting device and iOS version)",4879|2632|2666,groq,qwen/qwen3.8-27b,True,1,2,2,1,1,"Useful next steps, but the restart evidence is for playlist issues rather than the specific Apple Music library problem.",2,1,1,-1,2,0,0,-1,1,0,"The reply is fully grounded in the retrieved evidence, specifically citing the request for iOS version (Conv 2632, 4879) and the suggestion to restart the device (Conv 4879). It is directly relevant to the customer's issue with Apple Music after an update. However, helpfulness is rated as 1 because the response is somewhat generic; it suggests a restart which the customer likely already tried or is a basic first step, and it defers further support to DM without providing any immediate specific troubleshooting steps for the 'downloaded songs missing' symptom (e.g., checking iCloud Music Library settings or re-syncing). The reply is not truncated and contains no unsupported claims."
+i can’t download or add songs to my playlist on apple music? help? @AppleSupport,"Hi there,
+
+It sounds like the download is stuck and the song may be greyed out.  
+Here’s",2666|4879|2632,groq,openai/gpt-oss-20b,True,2,0,1,1,0,"The issue is clear, but the generated reply is visibly incomplete ('Here is'), making it unusable.",1,-1,0,0,1,0,1,0,0,0,"The draft reply is truncated mid-sentence ('Here’s'), rendering it unusable and unhelpful. While the initial observation about the download being stuck and songs potentially being greyed out is grounded in the retrieved evidence (Conversation 4879 and 2666), the response fails to provide any actionable troubleshooting steps or complete the thought. The truncation results in a significant failure in helpfulness and overall quality."
+@AppleSupport Sometimes my phone just randomly starts deleting my text or just starts typing random letters. I can hardly even use my phone half the time,"Hi there,
+
+It sounds like you’re experiencing keyboard glitches that affect multiple apps. To help us investigate further, could you let us know:
+
+1. When did the issue first start?  
+2. Does it happen on all apps or only specific ones?  
+3. Which iPhone model and iOS version are you using?  
+
+Once we have that information, we can look into possible causes such as keyboard settings, software updates, or accessibility features that might be affecting typing.
+
+Thanks for your patience—looking forward to your reply.
+
+**Evidence**  
+- Conversation #12000  
+- Conversation #13211  
+- Conversation #13945",12000|13211|13945,groq,openai/gpt-oss-20b,True,2,1,1,2,1,"Issue match is strong, but it introduces possible causes (accessibility features, etc.) not clearly grounded in the evidence.",2,0,2,1,2,1,0,-2,2,1,"The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for the start time, affected apps, and device details for similar keyboard/typing issues. It is not truncated, is clearly helpful by providing specific diagnostic questions, and directly addresses the customer's complaint about random typing and deletion. There are no unsupported claims; the mention of potential causes (settings, updates, accessibility) is framed as possibilities to investigate rather than confirmed facts."
+"Dear @AppleSupport My iphone6S does not like IOS11 11.01 or 11.02.  It's glitchy, apps don't open, my lock screen freezes and goes black and everything is basically on a 5 second delay. Siri is slower than dirt. It is annoying.  Any suggestions? #iOS11 #ios11update @115858","Hi there,
+
+It sounds like you’re experiencing performance issues after installing an early iOS 11 build.  
+From the cases we’ve seen, the first step is to confirm which iOS version you’re on and, if you’re on 11.0.x, update to iOS 11.1 (the latest 11.x release).  
+
+**What to do next**  
+1. Open **Settings > General >",11111|736|1779,groq,openai/gpt-oss-20b,True,2,1,2,0,1,"Good match and update recommendation, but the response is truncated before giving the actual steps.",2,0,0,-1,2,0,0,0,0,-1,"The draft is truncated mid-sentence ('Settings > General >'), rendering it unusable and breaking the helpfulness score. However, the content provided is factually grounded in the historical evidence (recommending iOS 11.1 update for 11.0.x issues) and directly relevant to the customer's performance complaints. There are no unsupported claims in the visible text."
+@AppleSupport please check my DM having Activity issues with my Watch. Nothing is being tracked..,"Hi,
+
+We’d like to investigate this further. Please DM us with details of what’s happening on your Watch so we can troubleshoot the activity tracking issue.
+
+Thanks for reaching out.
+
+**Evidence**  
+- #1 (conversation_id 11661)  
+- #2 (conversation_id 719)  
+- #3 (conversation_id 11118)",11661|719|11118,groq,openai/gpt-oss-20b,True,2,1,2,0,1,"Reasonable DM response for Watch activity tracking, but it provides little actionable help beyond escalation.",2,0,1,0,2,0,0,0,1,0,"The draft is fully grounded in the historical evidence, which consistently directs customers to DM for troubleshooting. It is relevant and contains no unsupported claims. However, it scores 1 on helpfulness and overall quality because it is vague; it asks for details without providing any initial troubleshooting steps or specific diagnostic questions, which would make the response more actionable and helpful."
+Dog it’s hard to remember to tap something else AFTER u tap “I”. Fuckin up ALL my tweets! @115858 @AppleSupport Get this box A shit together! I shouldn’t have to make an ALTERNATIVE TEXT FOR A REGULAR LETTER ON MY KEYBOARD!!!!!!!,"Hi there,
+
+It sounds like the “I” key is behaving unexpectedly on your keyboard.  
+To",8561|12023|13945,groq,openai/gpt-oss-20b,True,2,0,1,1,0,"Issue match is strong, but the reply is visibly truncated ('To'), so it is not useful as delivered.",1,-1,0,0,2,1,0,-1,0,0,"The draft is truncated mid-sentence ('To'), rendering it unusable and unhelpful. While the initial statement is relevant and consistent with the historical evidence regarding the 'I' key issue, the lack of any actionable troubleshooting steps or complete response results in a score of 0 for helpfulness and overall quality."
+"@AppleSupport since I updated to iOS 11, unable to download any new apps/music from App Store or iTunes.  Tried all troubleshooting including a  DFU. 😡","Hi there,
+
+It sounds like you’re experiencing the same download issue that a few customers",11633|1791|4879,groq,openai/gpt-oss-20b,True,2,0,1,1,0,"The reply is visibly incomplete ('the same download issue...'), so it cannot provide a usable answer.",1,-1,0,0,1,0,0,-1,0,0,"The draft reply is truncated mid-sentence ('...that a few customers'), rendering it unusable and unhelpful. While the opening statement is factually grounded in the retrieved evidence (which shows multiple customers with similar iOS 11 download issues), the truncation prevents any actionable support or resolution. The relevance is partial as it acknowledges the issue but fails to address it. There are no unsupported claims in the visible text, but the overall quality is poor due to the broken format."
+@AppleSupport my card just got charged for a 9.52 purchase from iTunes that I don’t remember making? what do I do to get this resolved,"I’m sorry you’re seeing a charge you don’t recognize.  
+For unrecognized iTunes charges, please contact our iTunes Store group for help. They can investigate the transaction and resolve the issue for you.
+
+**Evidence**  
+- Conversation #12602 (support response about unrecognized charges)",9180|12602|8579,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Strongly grounded in the cited unrecognized-charge example and gives a clear next action.,2,0,1,-1,2,0,0,0,1,-1,"The reply is fully grounded in Conversation #12602, which advises contacting the iTunes Store group for unrecognized charges. It is directly relevant to the customer's issue. However, it scores 1 on helpfulness because it provides a generic referral without specific actionable steps (such as how to contact the group, checking the receipt, or verifying the account) or diagnostic questions, making it less immediately useful than a more detailed response. There are no unsupported claims or truncation issues."
+"My phone was working perfectly and the second I️ download the ios update it’s slow, lags, and freezes. @AppleSupport what the fuck","Hi there,
+
+Thanks for reaching out. To help you troubleshoot the slowdown and freezes after the update, could you let us know:
+
+1. Your iPhone model (e.g., iPhone 8 Plus, iPhone 6s Plus, etc.)  
+2. The exact iOS version currently installed  
+3. Any steps you’ve already tried (e.g., restarting, clearing storage, etc.)
+
+Once we have that information, we can guide you through the next steps.
+
+Thanks for your patience.
+
+**Evidence**  
+- Conversation 5821  
+- Conversation 736  
+- Conversation 3764",5821|736|3764,groq,openai/gpt-oss-20b,True,2,2,2,0,2,Good match to post-update slowdown/freezing and asks relevant diagnostic questions; no major unsupported claim.,2,0,2,0,2,0,0,0,2,0,"The draft reply is fully grounded in the retrieved historical evidence, which consistently shows support agents asking for the iPhone model, exact iOS version, and steps tried to diagnose post-update performance issues. The reply is not truncated, is clearly helpful and actionable, and directly addresses the customer's complaint about slowness and freezing after an update. It contains no unsupported claims, invented policies, or false promises."
+@AppleSupport hi I’m trying to update my billing details but it either says my payment was declined when I have not purchased anything or says that my form isn’t filled in when it’s completed.,"Hi there,
+
+I’m sorry to hear you are experiencing issues updating your billing details. Since the specific error messages you are seeing (payment declined or form validation errors) are not addressed in the available historical records, I cannot provide a specific technical fix based on past cases.
+
+However, based on similar billing inquiries, our team typically requests additional details to investigate account-specific issues. Please provide your country and a brief description of the exact error message you are receiving so we can look into this further.
+
+*Note: This reply is a cautious historical template, as the retrieved evidence does not contain specific solutions for billing form errors.*
+
+**Evidence:**
+*   Conversation ID 8579 (Support requested country to look into billing/charge visibility issues)
+*   Conversation ID 1764 (Support directed customer to contact iTunes Store team for account-specific help)",12602|8579|1764,groq,qwen/qwen3.8-27b,True,2,2,2,0,2,Cautious and explicit about missing specific evidence; asks for country/error details consistent with the cited historical examples.,2,0,1,-1,2,0,0,0,1,-1,"The reply is fully grounded in the retrieved evidence, correctly citing Conversation ID 8579 (requesting country) and 1764 (directing to iTunes Store team) without inventing facts. It is directly relevant to the billing issue. However, helpfulness is rated as 1 because the reply is vague and lacks specific troubleshooting steps (e.g., clearing cache, checking browser compatibility) or a direct link to the iTunes Store team, relying instead on a generic request for more details. The inclusion of a meta-note ('Note: This reply is a cautious historical template...') is unprofessional for a customer-facing draft, which lowers the overall quality despite the factual accuracy."

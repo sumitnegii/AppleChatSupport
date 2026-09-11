@@ -7,7 +7,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.pipeline import Pipeline
 
 
 SEED = 42

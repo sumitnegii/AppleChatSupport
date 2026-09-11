@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppleSupport AI Agent | Hiver Demo</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --surface-sunken: #fafafc;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.14);
+      --text-main: #1d1d1f;
+      --text-muted: #6e6e73;
+      --text-subtle: #98989d;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-light: rgba(0, 113, 227, 0.08);
+      --accent-line: rgba(0, 113, 227, 0.35);
+      --success: #1f8a4c;
+      --success-bg: rgba(52, 199, 89, 0.12);
+      --success-line: rgba(52, 199, 89, 0.45);
+      --danger: #d70015;
+      --danger-bg: rgba(255, 59, 48, 0.08);
+      --danger-line: rgba(255, 59, 48, 0.4);
+      --warning: #b06000;
+      --warning-bg: rgba(255, 159, 10, 0.14);
+      --radius-lg: 22px;
+      --radius: 16px;
+      --radius-sm: 11px;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+    }
+
+    a { color: inherit; }
+
+    /* ---------- Header ---------- */
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 15px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(150deg, #0071e3, #47a6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .brand-icon svg { width: 18px; height: 18px; }
+
+    .brand-text h1 {
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    /* ---------- Layout ---------- */
+
+    main {
+      flex: 1;
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 32px 64px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; padding: 24px 18px 48px; }
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      letter-spacing: -0.005em;
+    }
+
+    /* ---------- Query input ---------- */
+
+    textarea {
+      width: 100%;
+      height: 104px;
+      padding: 14px 16px;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.94rem;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    textarea::placeholder { color: var(--text-subtle); }
+
+    textarea:focus {
+      background: var(--surface);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-light);
+    }
+
+    .sample-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .sample-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .sample-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: var(--surface-sunken);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 13px 7px 10px;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: inherit;
+    }
+
+    .chip:hover {
+      background: var(--surface);
+      border-color: var(--border-strong);
+    }
+
+    .chip-badge {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .chip-auto { background: var(--success); }
+    .chip-esc { background: var(--danger); }
+
+    .action-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    button.btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 980px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button.btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+    button.btn-primary:active:not(:disabled) { transform: scale(0.98); }
+
+    button.btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ---------- Results ---------- */
+
+    .result-section {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .result-section.active {
+      display: flex;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Escalation banner */
+    .escalation-card {
+      padding: 20px 24px;
+      border-left: 3px solid var(--border-strong);
+    }
+
+    .escalation-card.auto_handle { border-left-color: var(--success); }
+    .escalation-card.human_escalation { border-left-color: var(--danger); }
+
+    .escalation-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    .decision-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+
+    .decision-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-subtle);
+    }
+
+    .decision-badge.auto_handle { color: var(--success); }
+    .decision-badge.auto_handle::before { background: var(--success); }
+    .decision-badge.human_escalation { color: var(--danger); }
+    .decision-badge.human_escalation::before { background: var(--danger); }
+
+    .risk-pill {
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .risk-low { background: var(--success-bg); color: var(--success); }
+    .risk-medium { background: var(--warning-bg); color: var(--warning); }
+    .risk-high { background: var(--danger-bg); color: var(--danger); }
+
+    .escalation-reason {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .escalation-reason strong { color: var(--text-main); font-weight: 600; }
+
+    .signals-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .signal-pill {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* Reply card */
+    .reply-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reply-header .card-title { margin-bottom: 0; }
+
+    .intent-tag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .provider-tag {
+      font-size: 0.74rem;
+      color: var(--text-subtle);
+      font-family: var(--font-mono);
+    }
+
+    .reply-body {
+      background: var(--surface-sunken);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      font-size: 0.94rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      color: var(--text-main);
+    }
+
+    /* Evidence */
+    .evidence-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+    }
+
+    .evidence-item {
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .evidence-item:first-child { border-top: none; padding-top: 6px; }
+
+    .evidence-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .evidence-cid {
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    .evidence-score {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      padding: 2px 9px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .evidence-text {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .evidence-line {
+      padding-left: 12px;
+      border-left: 2px solid var(--border);
+    }
+
+    .evidence-line strong {
+      display: block;
+      color: var(--text-subtle);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* ---------- Pipeline panel ---------- */
+
+    .pipeline-progress {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pipeline-progress-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 9px;
+    }
+
+    .pipeline-status-text {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    #stepCounter {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      font-family: var(--font-mono);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: var(--surface-sunken);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .stages-container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .stage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 13px 4px;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+
+    /* connecting rail */
+    .stage-item:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 44px;
+      bottom: -13px;
+      width: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .stage-item.completed:not(:last-child)::before {
+      background: var(--success-line);
+    }
+
+    .stage-item.pending { opacity: 0.42; }
+    .stage-item.processing,
+    .stage-item.completed { opacity: 1; }
+
+    .stage-icon-wrap {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+      transition: all 0.25s ease;
+    }
+
+    .stage-item.processing .stage-icon-wrap {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-light);
+    }
+
+    .stage-item.completed .stage-icon-wrap {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .stage-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-top: 2px;
+    }
+
+    .stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .stage-name {
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .stage-item.processing .stage-name { color: var(--accent); }
+
+    .stage-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-subtle);
+      flex-shrink: 0;
+    }
+
+    .stage-item.processing .stage-tag { color: var(--accent); }
+    .stage-item.completed .stage-tag { color: var(--success); }
+
+    .stage-detail {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .spinner {
+      width: 11px;
+      height: 11px;
+      border: 1.5px solid var(--accent-light);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ---------- Empty state ---------- */
+
+    .empty-state {
+      text-align: center;
+      padding: 56px 24px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: var(--surface-sunken);
+      border-style: dashed;
+    }
+
+    .empty-state-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 14px;
+      color: var(--text-subtle);
+    }
+
+    .empty-state-icon svg { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>AppleSupport AI Agent</h1>
+        <p>Hiver assignment — grounded support agent with conservative escalation</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>FAISS index · 2,000 conversations</span>
+      </div>
+      <div class="status-pill">
+        <span>10 intents · grounded RAG</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main>
+    <!-- Left Column: Input & Results -->
+    <div class="panel">
+      <!-- Input Card -->
+      <div class="card">
+        <div class="card-title">Customer message</div>
+        <div class="input-group">
+          <textarea id="queryInput" placeholder="e.g. My iPhone battery is draining so fast after the update…" rows="3"></textarea>
+
+          <div class="sample-section">
+            <div class="sample-label">Try an example</div>
+            <div class="sample-chips">
+              <button class="chip" onclick="selectSample('My iPhone battery is draining so fast after updating to iOS 11. What can I do?')">
+                <span class="chip-badge chip-auto"></span> Battery drain post-update
+              </button>
+              <button class="chip" onclick="selectSample('Wi-Fi icon is greyed out and Bluetooth keeps disconnecting constantly.')">
+                <span class="chip-badge chip-auto"></span> Wi-Fi & Bluetooth dropping
+              </button>
+              <button class="chip" onclick="selectSample('Predictive keyboard is broken, whenever I type the letter I it replaces it with an A and question mark.')">
+                <span class="chip-badge chip-auto"></span> Letter "I" autocorrect bug
+              </button>
+              <button class="chip" onclick="selectSample('Why was my credit card charged twice for $9.99 on the App Store? I demand a full refund immediately!')">
+                <span class="chip-badge chip-esc"></span> Double charge refund
+              </button>
+              <button class="chip" onclick="selectSample('I have been locked out of my Apple ID and forgot my security answers. Please transfer me to a human representative.')">
+                <span class="chip-badge chip-esc"></span> Apple ID lockout / human
+              </button>
+              <button class="chip" onclick="selectSample('My phone is burning up, smoking, and the battery looks swollen after charging.')">
+                <span class="chip-badge chip-esc"></span> Overheating / swollen battery
+              </button>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="sendBtn" class="btn-primary" onclick="submitQuery()">
+              <span>Send query</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Section -->
+      <div id="resultSection" class="result-section">
+        <!-- Escalation Card -->
+        <div id="escalationCard" class="card escalation-card">
+          <div class="escalation-header">
+            <div id="decisionBadge" class="decision-badge">AUTO-HANDLE</div>
+            <div id="riskPill" class="risk-pill risk-low">Low risk</div>
+          </div>
+          <div id="escalationReason" class="escalation-reason"></div>
+          <div id="signalsContainer" class="signals-list"></div>
+        </div>
+
+        <!-- Grounded Reply Card -->
+        <div class="card">
+          <div class="reply-header">
+            <div class="card-title">Grounded reply</div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <span id="intentTag" class="intent-tag">intent: battery_charging</span>
+              <span id="providerTag" class="provider-tag">Groq / gpt-oss-20b</span>
+            </div>
+          </div>
+          <div id="replyBody" class="reply-body"></div>
+        </div>
+
+        <!-- Retrieved Historical Evidence Card -->
+        <div class="card">
+          <div class="card-title">Retrieved historical evidence (FAISS)</div>
+          <div id="evidenceList" class="evidence-list"></div>
+        </div>
+      </div>
+
+      <!-- Placeholder before first run -->
+      <div id="emptyState" class="card empty-state">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.5 9.5a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2-2.4 3.7"/>
+            <circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div>Enter an AppleSupport query above or pick an example to trigger the live 6-stage agent pipeline.</div>
+      </div>
+    </div>
+
+    <!-- Right Column: Agent Pipeline Execution -->
+    <div class="panel">
+      <div class="card">
+        <div class="card-title">Agent pipeline execution</div>
+
+        <div class="pipeline-progress">
+          <div class="pipeline-progress-top">
+            <div id="pipelineStatusText" class="pipeline-status-text">Pipeline idle</div>
+            <div id="stepCounter">0 / 6</div>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progressBarFill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <div class="stages-container">
+          <!-- Stage 1 -->
+          <div id="stage-1" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-1">1</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Reading query</span>
+                <span class="stage-tag" id="tag-1">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-1">Normalize, sanitize, and validate token length</div>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div id="stage-2" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-2">2</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Classifying intent</span>
+                <span class="stage-tag" id="tag-2">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-2">Map into 10-class AppleSupport taxonomy via TF-IDF LR</div>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div id="stage-3" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-3">3</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Retrieving historical cases</span>
+                <span class="stage-tag" id="tag-3">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-3">Query 384-dim IndexFlatIP local FAISS vector store</div>
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div id="stage-4" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-4">4</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Reviewing historical evidence</span>
+                <span class="stage-tag" id="tag-4">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-4">Verify similarity score against grounding threshold (&ge;0.28)</div>
+            </div>
+          </div>
+
+          <!-- Stage 5 -->
+          <div id="stage-5" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-5">5</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Generating grounded reply</span>
+                <span class="stage-tag" id="tag-5">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-5">Draft reply conditioned strictly on retrieved conversation turns</div>
+            </div>
+          </div>
+
+          <!-- Stage 6 -->
+          <div id="stage-6" class="stage-item pending">
+            <div class="stage-icon-wrap" id="icon-6">6</div>
+            <div class="stage-info">
+              <div class="stage-top">
+                <span class="stage-name">Making escalation decision</span>
+                <span class="stage-tag" id="tag-6">Pending</span>
+              </div>
+              <div class="stage-detail" id="detail-6">Evaluate safety, billing, hardware risk, and grounding signals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const checkmarkSvg = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
+    const spinnerHtml = `<div class="spinner"></div>`;
+
+    function selectSample(text) {
+      document.getElementById('queryInput').value = text;
+      submitQuery();
+    }
+
+    function setStageState(stageNum, state, detailText = null) {
+      const el = document.getElementById(`stage-${stageNum}`);
+      const icon = document.getElementById(`icon-${stageNum}`);
+      const tag = document.getElementById(`tag-${stageNum}`);
+      const detail = document.getElementById(`detail-${stageNum}`);
+
+      el.className = `stage-item ${state}`;
+      tag.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+
+      if (state === 'processing') {
+        icon.innerHTML = spinnerHtml;
+      } else if (state === 'completed') {
+        icon.innerHTML = checkmarkSvg;
+      } else {
+        icon.textContent = stageNum;
+      }
+
+      if (detailText) {
+        detail.textContent = detailText;
+      }
+    }
+
+    function resetPipeline() {
+      for (let i = 1; i <= 6; i++) {
+        setStageState(i, 'pending');
+      }
+      document.getElementById('progressBarFill').style.width = '0%';
+      document.getElementById('stepCounter').textContent = '0 / 6 Stages';
+      document.getElementById('pipelineStatusText').textContent = 'Starting Pipeline...';
+    }
+
+    async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function submitQuery() {
+      const query = document.getElementById('queryInput').value.trim();
+      if (!query) {
+        alert('Please enter a customer query.');
+        return;
+      }
+
+      const sendBtn = document.getElementById('sendBtn');
+      sendBtn.disabled = true;
+
+      // Hide results, hide empty state
+      document.getElementById('resultSection').classList.remove('active');
+      document.getElementById('emptyState').style.display = 'none';
+
+      resetPipeline();
+
+      // Visual stage progression begins
+      setStageState(1, 'processing', 'Sanitizing and tokenizing input query...');
+      document.getElementById('progressBarFill').style.width = '15%';
+      document.getElementById('stepCounter').textContent = '1 / 6 Stages';
+      document.getElementById('pipelineStatusText').textContent = 'Stage 1: Reading query...';
+
+      // Small pacing for visual clarity
+      await sleep(250);
+      setStageState(1, 'completed', 'Input validated and tokenized');
+      setStageState(2, 'processing', 'Analyzing intent distribution across 10 classes...');
+      document.getElementById('progressBarFill').style.width = '33%';
+      document.getElementById('stepCounter').textContent = '2 / 6 Stages';
+      document.getElementById('pipelineStatusText').textContent = 'Stage 2: Classifying intent...';
+
+      const API_BASE = (window.location.protocol === 'file:' || !window.location.host.includes(':8000')) ? 'http://localhost:8000' : '';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/support`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, k: 3, use_remote: true })
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.detail || 'Server error occurred');
+        }
+
+        const data = await response.json();
+
+        // Continue animating stages through completion with actual returned data
+        await sleep(250);
+        setStageState(2, 'completed', `Intent: ${data.intent} (top probability: ${(data.intent_confidence * 100).toFixed(1)}%, prior: 10.0%)`);
+
+        setStageState(3, 'processing', 'Searching local FAISS index (IndexFlatIP)...');
+        document.getElementById('progressBarFill').style.width = '50%';
+        document.getElementById('stepCounter').textContent = '3 / 6 Stages';
+        document.getElementById('pipelineStatusText').textContent = 'Stage 3: Retrieving historical cases...';
+
+        await sleep(250);
+        setStageState(3, 'completed', `Retrieved ${data.evidence_ids.length} cases: #${data.evidence_ids.join(', #')}`);
+
+        setStageState(4, 'processing', 'Validating similarity score against grounding threshold...');
+        document.getElementById('progressBarFill').style.width = '66%';
+        document.getElementById('stepCounter').textContent = '4 / 6 Stages';
+        document.getElementById('pipelineStatusText').textContent = 'Stage 4: Reviewing evidence...';
+
+        await sleep(220);
+        const topScore = data.evidence.length ? data.evidence[0].sim_score : 0.0;
+        setStageState(4, 'completed', `Top retrieval similarity: ${topScore.toFixed(4)} (Threshold: 0.2800)`);
+
+        setStageState(5, 'processing', 'Conditioning draft on retrieved conversation turns...');
+        document.getElementById('progressBarFill').style.width = '83%';
+        document.getElementById('stepCounter').textContent = '5 / 6 Stages';
+        document.getElementById('pipelineStatusText').textContent = 'Stage 5: Generating grounded reply...';
+
+        await sleep(250);
+        setStageState(5, 'completed', `Grounded draft via ${data.provider_used} (${data.model_used})`);
+
+        setStageState(6, 'processing', 'Evaluating explicit safety signals and grounding rules...');
+        document.getElementById('progressBarFill').style.width = '95%';
+        document.getElementById('stepCounter').textContent = '6 / 6 Stages';
+        document.getElementById('pipelineStatusText').textContent = 'Stage 6: Making escalation decision...';
+
+        await sleep(220);
+        const esc = data.escalation;
+        setStageState(6, 'completed', `${esc.decision}: ${esc.reason.slice(0, 75)}...`);
+
+        document.getElementById('progressBarFill').style.width = '100%';
+        document.getElementById('stepCounter').textContent = '6 / 6 Stages';
+        document.getElementById('pipelineStatusText').textContent = 'Pipeline Completed';
+
+        // Render Results on the Left Panel
+        renderResults(data);
+
+      } catch (err) {
+        let msg = 'Pipeline execution failed: ' + err.message;
+        if (err.message.includes('fetch') || err.message.includes('Failed to fetch')) {
+          msg += '\n\nTroubleshooting:\n1. The backend server must be running:\n   python3 server.py\n2. We strongly recommend opening the demo via HTTP at:\n   http://localhost:8000';
+        }
+        alert(msg);
+        document.getElementById('pipelineStatusText').textContent = 'Connection Failed';
+      } finally {
+        sendBtn.disabled = false;
+      }
+    }
+
+    function renderResults(data) {
+      const esc = data.escalation;
+      const rawDec = esc.raw_decision; // 'auto_handle' or 'human_escalation'
+
+      // 1. Escalation Card
+      const escCard = document.getElementById('escalationCard');
+      escCard.className = `card escalation-card ${rawDec}`;
+
+      const badge = document.getElementById('decisionBadge');
+      badge.textContent = esc.decision; // 'AUTO-HANDLE' or 'HUMAN ESCALATION'
+      badge.className = `decision-badge ${rawDec}`;
+
+      const riskPill = document.getElementById('riskPill');
+      riskPill.textContent = `${esc.risk_level.toUpperCase()} RISK`;
+      riskPill.className = `risk-pill risk-${esc.risk_level}`;
+
+      document.getElementById('escalationReason').innerHTML = `<strong>Reason:</strong> ${esc.reason}`;
+
+      const signalsContainer = document.getElementById('signalsContainer');
+      signalsContainer.innerHTML = '';
+      if (esc.signals_triggered && esc.signals_triggered.length > 0) {
+        esc.signals_triggered.forEach(sig => {
+          const pill = document.createElement('span');
+          pill.className = 'signal-pill';
+          pill.textContent = `Triggered: ${sig}`;
+          signalsContainer.appendChild(pill);
+        });
+      }
+
+      // 2. Grounded Reply
+      document.getElementById('intentTag').textContent = `intent: ${data.intent}`;
+      document.getElementById('providerTag').textContent = `${data.provider_used} • ${data.model_used}`;
+      document.getElementById('replyBody').textContent = data.reply;
+
+      // 3. Evidence List
+      const evidenceList = document.getElementById('evidenceList');
+      evidenceList.innerHTML = '';
+      data.evidence.forEach((ev, idx) => {
+        const item = document.createElement('div');
+        item.className = 'evidence-item';
+        item.innerHTML = `
+          <div class="evidence-top">
+            <span class="evidence-cid">Case #${ev.conversation_id}</span>
+            <span class="evidence-score">Cosine Sim: ${ev.sim_score.toFixed(4)}</span>
+          </div>
+          <div class="evidence-text">
+            <div class="evidence-line"><strong>Customer:</strong> "${escapeHtml(ev.customer_excerpt)}"</div>
+            <div class="evidence-line"><strong>Support:</strong> "${escapeHtml(ev.support_excerpt)}"</div>
+          </div>
+        `;
+        evidenceList.appendChild(item);
+      });
+
+      // Show Result Section
+      document.getElementById('resultSection').classList.add('active');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+================================================================================
+LLM-AS-A-JUDGE & HUMAN-VS-JUDGE AGREEMENT EVALUATION REPORT
+AppleSupport Retrieval-Grounded Reply Quality
+================================================================================
+
+1. EXECUTIVE SUMMARY & OVERVIEW
+--------------------------------------------------------------------------------
+Total evaluation rows: 30
+Human evaluator ground truth: reply_quality_human_eval_scored.csv
+Scoring scale:
+  - factual_grounding, helpfulness, relevance, overall_quality: 0 (Poor), 1 (Acceptable/Flawed), 2 (Strong)
+  - unsupported_claims: 0 (No unsupported claims), 1 (Minor/limited claims), 2 (Significant/multiple claims)
+
+2. DIMENSIONAL AGREEMENT METRICS
+--------------------------------------------------------------------------------
+Dimension              | Exact Agr  | Adjacent Agr | MAE    | Bias    | QWK    | Corr   | Human Mean | Judge Mean
+-----------------------------------------------------------------------------------------------------------------
+factual_grounding      |     60.0% |      100.0% |   0.40 |   +0.13 |   0.14 |   0.15 |       1.67 |       1.80
+helpfulness            |     60.0% |      100.0% |   0.40 |   -0.13 |   0.55 |   0.56 |       1.37 |       1.23
+relevance              |     70.0% |      100.0% |   0.30 |   +0.30 |   0.22 |   0.35 |       1.63 |       1.93
+unsupported_claims     |     60.0% |       90.0% |   0.50 |   -0.50 |   0.25 |   0.38 |       0.63 |       0.13
+overall_quality        |     60.0% |      100.0% |   0.40 |   -0.13 |   0.57 |   0.58 |       1.33 |       1.20
+
+3. CONFUSION MATRICES (Rows = Human True, Columns = Judge Pred)
+--------------------------------------------------------------------------------
+Dimension: factual_grounding
+          Judge 0   Judge 1   Judge 2
+Human 0          0         0         0
+Human 1          1         1         8
+Human 2          0         3        17
+
+Dimension: helpfulness
+          Judge 0   Judge 1   Judge 2
+Human 0          3         0         0
+Human 1          1         8         4
+Human 2          0         7         7
+
+Dimension: relevance
+          Judge 0   Judge 1   Judge 2
+Human 0          0         0         0
+Human 1          0         2         9
+Human 2          0         0        19
+
+Dimension: unsupported_claims
+          Judge 0   Judge 1   Judge 2
+Human 0         15         0         0
+Human 1          9         2         0
+Human 2          3         0         1
+
+Dimension: overall_quality
+          Judge 0   Judge 1   Judge 2
+Human 0          3         0         0
+Human 1          2         8         4
+Human 2          0         6         7
+
+4. FAILURE CASE & DISAGREEMENT ANALYSIS
+--------------------------------------------------------------------------------
+A. TRUNCATION DETECTION:
+Identified 4 truncated replies in human notes.
+  - Query: @AppleSupport after update of ios 11.0.2 my iphone 6s screen...
+    Human overall: 1 | Judge overall: 1
+    Human note: Relevant update evidence, but says iOS 11.1 'resolved' the issues without enough support; reply is also truncated.
+    Judge rationale: The draft is fully grounded in the retrieved evidence, which consistently suggests updating to iOS 11.1 to resolve performance and battery issues. It ...
+
+  - Query: @AppleSupport After installing the new iOS update (6 plus) m...
+    Human overall: 2 | Judge overall: 1
+    Human note: Good battery/update match and sensible diagnostic questions; reply is truncated at the end.
+    Judge rationale: The reply is fully grounded in the historical evidence, mirroring the diagnostic questions (iOS version, device, specific apps) and the suggestion to ...
+
+  - Query: Dear @AppleSupport My iphone6S does not like IOS11 11.01 or ...
+    Human overall: 1 | Judge overall: 0
+    Human note: Good match and update recommendation, but the response is truncated before giving the actual steps.
+    Judge rationale: The draft is truncated mid-sentence ('Settings > General >'), rendering it unusable and breaking the helpfulness score. However, the content provided ...
+
+  - Query: Dog it’s hard to remember to tap something else AFTER u tap ...
+    Human overall: 0 | Judge overall: 0
+    Human note: Issue match is strong, but the reply is visibly truncated ('To'), so it is not useful as delivered.
+    Judge rationale: The draft is truncated mid-sentence ('To'), rendering it unusable and unhelpful. While the initial statement is relevant and consistent with the histo...
+
+B. HIGH DISAGREEMENT EXAMPLES (|Human - Judge| >= 1 on overall_quality):
+Found 12 cases with score divergence on overall quality.
+  Example: Query: @AppleSupport Just the music app is giving me issues... 11.1.1 an...
+    Human scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Judge scores: Grounding=2, Helpful=1, Rel=2, Claims=0, Overall=1
+    Human note: Strong match to the Music-app issue; DM and device-model request are consistent with the cited historical examples.
+    Judge rationale: The reply is fully grounded in the retrieved evidence, specifically mirroring the diagnostic approach in Conversation ID 11101 (requesting device model and DM for further investigation). It is relevant to the specific issue (Music app on iOS 11.1.1). However, it scores 1 on helpfulness because it provides no immediate troubleshooting steps or acknowledgment of the specific symptoms (deleting music, broken albums) beyond a generic apology. It relies entirely on a follow-up DM for resolution, which is a passive support strategy compared to providing immediate actionable advice. There are no unsupported claims or truncation issues.
+
+  Example: Query: @AppleSupport hey, how would I keep adding songs to a custom down...
+    Human scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Judge scores: Grounding=2, Helpful=1, Rel=2, Claims=0, Overall=1
+    Human note: Very close match to historical playlist problem; restart recommendation is explicitly grounded.
+    Judge rationale: The reply is fully grounded in Conversation #4879, which explicitly links restarting the device to resolving issues with adding songs to playlists. It is directly relevant to the customer's specific complaint. However, helpfulness is rated as 1 because the advice is somewhat generic and relies on a single troubleshooting step (restart) derived from a potentially different context (download issues vs. playlist addition), without offering more specific guidance for Apple Music playlist syncing or checking for greyed-out items (as seen in Conv #2666). The reply is not truncated and contains no unsupported claims.
+
+  Example: Query: @AppleSupport @116333 It would be great if you guys introduce gif...
+    Human scores: Grounding=1, Helpful=1, Rel=1, Claims=2, Overall=1
+    Judge scores: Grounding=0, Helpful=1, Rel=2, Claims=2, Overall=0
+    Human note: Acknowledges feedback well, but 'we will forward your comments' is an unsupported organizational action and retrieved evidence is not directly relevant.
+    Judge rationale: The draft reply fails on factual grounding because it cites three conversation IDs (12602, 8579, 11996) as evidence for the claim that Apple has not introduced gift cards or alternative payment methods. The retrieved evidence for these IDs discusses credit card charges, general service options, and unrecognized charges, none of which support the specific claim about the absence of gift cards or Paytm. This constitutes a significant unsupported claim and a misrepresentation of the retrieved data. While the reply is relevant to the customer's request and not truncated, the hallucinated evidence makes it factually incorrect and low quality.
+
+  Example: Query: @AppleSupport ever since the iOS 11.1.2 update my iPad Pro batter...
+    Human scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Judge scores: Grounding=2, Helpful=1, Rel=2, Claims=0, Overall=1
+    Human note: Good match to battery/charging after update and asks appropriate diagnostic details.
+    Judge rationale: The draft is fully grounded in the retrieved evidence, which consistently shows support agents asking for the specific iOS version and the timeline of the issue to begin troubleshooting. It is not truncated. However, it scores 1 on helpfulness because the customer explicitly stated they are on iOS 11.1.2 and that the issue started after that update. Asking for information the customer has already provided is redundant and less helpful than acknowledging the provided details and moving to the next diagnostic step (e.g., checking battery health or resetting settings), which would be more appropriate for a support interaction.
+
+  Example: Query: @AppleSupport I dm’ed you but I’m sure you’re not going to help b...
+    Human scores: Grounding=1, Helpful=1, Rel=1, Claims=0, Overall=1
+    Judge scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Human note: Appropriate empathetic response, but the underlying issue is unspecified and evidence cannot substantively support a solution.
+    Judge rationale: The draft reply is fully grounded in the retrieved historical evidence, which consistently directs customers to DM for support. It is not truncated, is clearly helpful by providing a direct call to action (DM with details), and is directly relevant to the customer's complaint about lack of support. There are no unsupported claims; the promise to 'look into it' aligns with the historical support responses.
+
+  Example: Query: @AppleSupport Why is predictive text changing the letter “I” to I...
+    Human scores: Grounding=2, Helpful=1, Rel=2, Claims=1, Overall=1
+    Judge scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Human note: Excellent issue match, but suggesting another keyboard reset after the user already tried it is weak and switching keyboard language is not clearly supported.
+    Judge rationale: The draft is fully grounded in the retrieved evidence, correctly identifying the issue as a recurring problem where the letter 'I' changes to a strange character (referencing cases #13945, #12000, #12023). It is not truncated. The reply is helpful and relevant, asking specific diagnostic questions (model, scope of apps, previous attempts) that align with the support actions taken in the historical cases. There are no unsupported claims or invented policies.
+
+  Example: Query: @AppleSupport After installing the new iOS update (6 plus) my bat...
+    Human scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Judge scores: Grounding=2, Helpful=1, Rel=2, Claims=0, Overall=1
+    Human note: Good battery/update match and sensible diagnostic questions; reply is truncated at the end.
+    Judge rationale: The reply is fully grounded in the historical evidence, mirroring the diagnostic questions (iOS version, device, specific apps) and the suggestion to move to DMs found in the retrieved cases. It is directly relevant to the customer's complaint about battery drain after an update. However, the reply is truncated at the end ('Thanks for'), which renders it incomplete and unprofessional, significantly reducing its helpfulness and overall quality despite the correct content.
+
+  Example: Query: Am I the only one whose phone is burning up now that I’ve updated...
+    Human scores: Grounding=1, Helpful=1, Rel=1, Claims=1, Overall=1
+    Judge scores: Grounding=2, Helpful=2, Rel=2, Claims=0, Overall=2
+    Human note: Post-update overheating is plausible, but the cited evidence does not clearly establish the claimed battery/overheating similarity.
+    Judge rationale: The draft is fully grounded in the retrieved evidence, which shows multiple customers reporting battery and performance issues after iOS updates. It correctly identifies the user's specific complaint (overheating) as part of a broader pattern of post-update issues seen in the history (battery/performance). The reply is helpful, actionable, and asks for the necessary diagnostic information (iOS version and model) consistent with the support actions in the historical cases. There are no unsupported claims or guarantees.
+
+5. KEY TAKEAWAYS & CALIBRATION RECOMMENDATIONS
+--------------------------------------------------------------------------------
+- Overall Quality Exact Agreement: 60.0%, Adjacent Agreement: 100.0%.
+- Mean Absolute Error on Overall Quality: 0.40 points on a 0-2 scale.
+- Judge Bias: -0.13 points (positive indicates judge is more lenient; negative indicates judge is stricter).
+- Truncation sensitivity: The judge successfully penalizes incomplete/cut-off sentences when provided explicit negative rubric examples.
+- Grounding alignment: High correlation on relevance and factual grounding demonstrates effective evaluation of historical retrieval evidence.
+================================================================================

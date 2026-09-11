@@ -9,18 +9,30 @@ or derives labels from golden_eval.csv or golden_candidates.csv.
 import os
 import re
 import html
+import json
 import numpy as np
 import pandas as pd
-from pathlib import Path
 from typing import List, Dict, Tuple, Any
+import faiss
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
 SOURCE_CSV = 'apple_support_conversations.csv'
 INDEX_CSV = 'apple_support_conversation_index.csv'
+FAISS_INDEX_PATH = 'apple_support_faiss.index'
+FAISS_MAPPING_PATH = 'apple_support_faiss_mapping.json'
 EMBEDDING_MODEL = 'all-MiniLM-L6-v2'
 INDEX_FIELDS = ['conversation_id', 'text', 'customer_turns', 'support_turns', 'n_messages', 'embedding']
+
+_MODEL_CACHE: Dict[str, SentenceTransformer] = {}
+
+
+def get_embedding_model(model_name: str = EMBEDDING_MODEL) -> SentenceTransformer:
+    """Retrieve or cache SentenceTransformer model instance for fast reuse."""
+    if model_name not in _MODEL_CACHE:
+        _MODEL_CACHE[model_name] = SentenceTransformer(model_name)
+    return _MODEL_CACHE[model_name]
 
 
 def clean_text(text: Any) -> str:
@@ -111,12 +123,137 @@ def build_conversation_records(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
+def extract_embeddings_matrix(records: pd.DataFrame) -> np.ndarray:
+    """Extract float32 embeddings matrix from DataFrame records."""
+    def parse_vec(cell):
+        if isinstance(cell, (list, tuple, np.ndarray)):
+            return np.asarray(cell, dtype=np.float32)
+        text = str(cell).strip().replace('[', '').replace(']', '').replace('\n', ' ')
+        vals = [float(x) for x in re.findall(r'[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?', text)]
+        if not vals:
+            return np.zeros(384, dtype=np.float32)
+        return np.array(vals, dtype=np.float32)
+
+    vecs = np.stack([parse_vec(e) for e in records['embedding']]).astype(np.float32)
+    faiss.normalize_L2(vecs)
+    return vecs
+
+
+def build_faiss_index(records: pd.DataFrame = None,
+                      index_csv: str = INDEX_CSV,
+                      output_index_path: str = FAISS_INDEX_PATH,
+                      output_mapping_path: str = FAISS_MAPPING_PATH) -> Tuple[Any, Dict[str, Any]]:
+    """Build and persist a local FAISS vector index and metadata ID mapping.
+
+    Uses faiss.IndexFlatIP for exact inner product on L2-normalized embeddings
+    (which is mathematically identical to cosine similarity).
+    """
+    if records is None:
+        records = pd.read_csv(index_csv, low_memory=False)
+
+    embeddings = extract_embeddings_matrix(records)
+    n_vectors, dim = embeddings.shape
+
+    # Create inner-product index (cosine similarity for normalized vectors)
+    index = faiss.IndexFlatIP(dim)
+    index.add(embeddings)
+
+    # Build mapping structure
+    conv_ids = [int(x) for x in records['conversation_id'].tolist()]
+    mapping = {
+        'dim': int(dim),
+        'metric': 'inner_product_normalized_cosine',
+        'ntotal': int(n_vectors),
+        'vector_to_conversation_id': conv_ids,
+        'conversation_id_to_vector_id': {str(cid): idx for idx, cid in enumerate(conv_ids)},
+    }
+
+    # Ensure target parent directory exists
+    os.makedirs(os.path.dirname(os.path.abspath(output_index_path)), exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.abspath(output_mapping_path)), exist_ok=True)
+
+    # Persist locally
+    faiss.write_index(index, output_index_path)
+    with open(output_mapping_path, 'w') as f:
+        json.dump(mapping, f, indent=2)
+
+    return index, mapping
+
+
+def load_faiss_index(index_path: str = FAISS_INDEX_PATH,
+                     mapping_path: str = FAISS_MAPPING_PATH,
+                     auto_build_csv: str = INDEX_CSV) -> Tuple[Any, Dict[str, Any]]:
+    """Load the persisted FAISS vector index and ID mapping from disk.
+
+    If not found, automatically builds them from auto_build_csv if available.
+    """
+    if not os.path.exists(index_path) or not os.path.exists(mapping_path):
+        if auto_build_csv and os.path.exists(auto_build_csv):
+            return build_faiss_index(index_csv=auto_build_csv,
+                                     output_index_path=index_path,
+                                     output_mapping_path=mapping_path)
+        raise FileNotFoundError(f"FAISS index {index_path} or mapping {mapping_path} not found.")
+
+    index = faiss.read_index(index_path)
+    with open(mapping_path, 'r') as f:
+        mapping = json.load(f)
+
+    return index, mapping
+
+
+def faiss_search(query: str,
+                 records: pd.DataFrame,
+                 faiss_index: Any = None,
+                 mapping: Dict[str, Any] = None,
+                 index_path: str = FAISS_INDEX_PATH,
+                 mapping_path: str = FAISS_MAPPING_PATH,
+                 model_name: str = EMBEDDING_MODEL,
+                 k: int = 5) -> pd.DataFrame:
+    """Semantic retrieval using the local FAISS vector index.
+
+    Query -> SentenceTransformer embedding -> FAISS IndexFlatIP search -> top-K historical conversations.
+    """
+    if faiss_index is None or mapping is None:
+        faiss_index, mapping = load_faiss_index(index_path=index_path, mapping_path=mapping_path)
+
+    model = get_embedding_model(model_name)
+    cleaned_q = clean_text(query)
+    q_vec = model.encode([cleaned_q], show_progress_bar=False, normalize_embeddings=True).astype(np.float32)
+    faiss.normalize_L2(q_vec)
+
+    effective_k = min(k, faiss_index.ntotal)
+    scores, top_indices = faiss_index.search(q_vec, effective_k)
+
+    top_vec_ids = top_indices[0]
+    top_scores = scores[0]
+
+    vector_to_cid = mapping['vector_to_conversation_id']
+    top_cids = [vector_to_cid[i] for i in top_vec_ids]
+
+    # Index records by conversation_id for O(1) row lookup while preserving exact rank
+    records_lookup = records.set_index('conversation_id', drop=False)
+    matched_rows = []
+    for cid, score in zip(top_cids, top_scores):
+        if cid in records_lookup.index:
+            row = records_lookup.loc[cid]
+            if isinstance(row, pd.DataFrame):
+                row = row.iloc[0]
+            row_dict = row.to_dict()
+            row_dict['sim_score'] = float(score)
+            matched_rows.append(row_dict)
+
+    top_df = pd.DataFrame(matched_rows)
+    return top_df.reset_index(drop=True)
+
+
 def build_index(source_csv: str = SOURCE_CSV,
                 output_csv: str = INDEX_CSV,
                 model_name: str = EMBEDDING_MODEL,
                 sample_size: int = None,
-                max_conversations: int = None) -> pd.DataFrame:
-    """Encode and save a conversation-level embedding index.
+                max_conversations: int = None,
+                faiss_index_path: str = None,
+                faiss_mapping_path: str = None) -> pd.DataFrame:
+    """Encode and save a conversation-level embedding index + local FAISS index.
 
     Returns the conversation record DataFrame with an embedding column.
     """
@@ -128,13 +265,28 @@ def build_index(source_csv: str = SOURCE_CSV,
     if max_conversations:
         records = records.head(max_conversations)
 
-    model = SentenceTransformer(model_name)
+    model = get_embedding_model(model_name)
     texts = records['text'].fillna('').tolist()
     embeddings = model.encode(texts, show_progress_bar=False, normalize_embeddings=True)
     records['embedding'] = embeddings.tolist()
 
     # Write the conversation-level retrieval index as an artifact.
     records.to_csv(output_csv, index=False)
+
+    # Automatically build and persist the corresponding local FAISS index & mapping
+    if faiss_index_path is None:
+        if output_csv == INDEX_CSV:
+            faiss_index_path = FAISS_INDEX_PATH
+            faiss_mapping_path = FAISS_MAPPING_PATH
+        else:
+            base = os.path.splitext(output_csv)[0]
+            faiss_index_path = f"{base}.index"
+            faiss_mapping_path = f"{base}_mapping.json"
+
+    build_faiss_index(records=records,
+                      output_index_path=faiss_index_path,
+                      output_mapping_path=faiss_mapping_path)
+
     return records
 
 
@@ -170,7 +322,7 @@ def cosine_search(query: str,
 
     Query -> SentenceTransformer embedding -> cosine match -> top-K conversation records.
     """
-    model = SentenceTransformer(model_name)
+    model = get_embedding_model(model_name)
     q_vec = model.encode([clean_text(query)], show_progress_bar=False, normalize_embeddings=True)
     q_vec = np.asarray(q_vec, dtype=float)
 

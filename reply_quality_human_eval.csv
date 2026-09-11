@@ -1,0 +1,293 @@
+query,generated_reply,evidence_ids,provider_used,model_used,remote_request_succeeded,factual_grounding,helpfulness,relevance,unsupported_claims,overall_quality,notes
+@AppleSupport after update of ios 11.0.2 my iphone 6s screen freeze and phone has become slow with battery drain . Please help,"Hi there,
+
+It sounds like the update to iOS 11.0.2 may be causing the slowdown, freezes, and battery drain you’re experiencing. In similar cases, updating to the latest iOS 11.1 release has resolved these issues.  
+
+Could you let us know:
+1. Which iPhone 6s model you have (6s or 6s",736|3764|4901,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport my iPhone7 used to be able to last one day w/o charging. however, since updating to the latest iOS it has drained my phone’s battery life - i have to charge it &gt; once a day now. i have resorted to disable certain features on “Settings” but no improvement at all.","Hi there,
+
+I’m sorry to hear about the battery drain after the update. To help troubleshoot, could you let me know:
+
+1. Which iOS version you’re currently running (e.g., iOS 11.1, 12.x, etc.)  
+2. If you’ve noticed the issue only with certain apps or when using specific features.  
+
+Once I have those details, I can guide you through the next steps to improve battery life.
+
+Thanks for your patience.  
+
+**Evidence**  
+- #15433  
+- #2616  
+- #12010",15433|2616|12010,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport yes, sorry maybe I didnt explain properly, my phone is less than 30 hours old, I had to update to latest version of iOS before I could install from back up. Back up didnt include music though so had to re-add music, about 30% failed","Thank you for reaching out. I see you updated to the latest iOS and are having trouble re‑adding music after restoring from backup. The historical conversations we have do not cover this specific scenario, so I’m unable to provide a targeted solution at this time. If you need further help, please let us know and we’ll do our best to assist you.
+
+**Evidence used:** #1, #2, #3",15315|5829|13931,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport how do I apply a visa gift card plus my credit card for payment online?,"I’m sorry, but I don’t have any historical evidence that explains how to apply a Visa gift card in combination with a credit card for online purchases. The retrieved conversations cover unrelated topics such as missing charges, unexpected app fees, and missing iTunes gift‑card codes.
+
+**Evidence used:** #1, #2, #3
+
+If you need guidance on using multiple payment methods, you might want to check Apple’s official support pages or contact Apple Support directly for the most accurate instructions.",8579|12602|9180,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport Just the music app is giving me issues... 11.1.1 and it’s deleting the music I have. Not all the songs are downloading properly. My albums are disappearing or breaking. Getting sick of it. It hasn’t worked properly since I updated to iOS 11,"Hi there,
+
+I’m sorry to hear that the Music app is causing issues with your library and downloads on iOS 11.1.1. We want to help you get back to enjoying your music.
+
+Could you please send us a DM with your specific device model? We’d like to investigate this further with you to troubleshoot the problem.
+
+Best regards,
+Apple Support
+
+**Evidence:**
+*   Conversation ID 11101 (Troubleshooting Music app issues on iOS 11.1; request for device model and DM)
+*   Conversation ID 2632 (Request for device model and iOS version)
+*   Conversation ID 1791 (Acknowledgment of iOS 11.1 update issues)",1791|2632|11101,groq,qwen/qwen3.8-27b,True,,,,,,
+"@AppleSupport I made a full reset and reinstall from iTunes, several times without restoring from any backup. Deleting the app does not change this behavior neither. This bug happens randomly when listening, searching or downloading music. On a fresh new iPhone and since iOS 7 I don’t remember","Hi there,
+
+It sounds similar to the issues that have been reported after recent iOS updates. In a few cases, simply restarting the device has cleared the problem (see conversation 4879). If you haven’t already, please try a full restart of your iPhone and let us know whether the music, search, and download functions return to normal. If the issue persists, please share your current iOS version so we can investigate further.
+
+Thanks for your patience.
+
+**Evidence**  
+- Conversation 4896  
+- Conversation 11101",4896|11101|4879,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport hey, how would I keep adding songs to a custom downloaded playlist from Apple Music? I keep adding songs but do not appear","Hi there,
+
+I’m sorry you’re having trouble adding songs to your downloaded playlist. In a similar situation, restarting the device helped the customer resolve the issue. If you haven’t already, try restarting your iPhone and then adding the songs again. If the problem continues, let us know your iOS version and we’ll look into it further.
+
+Thanks for reaching out – we’re here to help.
+
+**Evidence**  
+- Conversation #4879 (customer: “Can’t add songs to playlists”; support: “We re glad to hear that resolved the issue” and mention restarting)",4879|2666|2632,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport Please fix the update... battery drains like crazy, went from fully charge to 5% in 4.5 hours standby, didn't even use it!!!!!","Hi there,
+
+It sounds like the battery drain started after the recent iOS update.  
+Could you let us know:
+
+1. Which iPhone model you’re using?  
+2. Whether you’ve updated to the latest iOS 11.1 release?  
+3. If the rapid drain happens with any particular app or feature.
+
+Once we have that info, we can look into the battery usage details and see what steps might help.  
+
+Thanks for your patience.  
+
+**Evidence**: #2, #3",3767|4901|2616,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport @116333 It would be great if you guys introduce gift cards or other payment methods like online banking or through third party apps like Paytm. Google has all of those methods mentioned above.I feel like lots of people wanting to buy stuffs but are unable due very limited payment options,"Thank you for sharing your feedback.  
+We appreciate your suggestion about adding gift‑card and alternative payment options. While we don’t have any historical evidence that Apple has introduced these methods, we will forward your comments to the relevant team for consideration.
+
+**Evidence**  
+- #1 (conversation_id 12602)  
+- #2 (conversation_id 8579)  
+- #3 (conversation_id 11996)",12602|8579|11996,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport ever since the iOS 11.1.2 update my iPad Pro battery drains 2x as fast and frequently stops charging while in use. Even when I put it in airplane mode to charge it takes 2x as long. Please fix this. This is my lifeline at school!,"Hi there,
+
+I’m sorry to hear about the battery issue after the iOS 11.1.2 update.  
+To help us investigate, could you let us know:
+
+1. Which exact iOS version you’re currently running (you can find it in Settings → General → About).  
+2. When the battery drain started to worsen (e.g., after a specific update or over a certain period).
+
+Once we have those details, we’ll look into possible solutions for you.
+
+Thank you for your patience.
+
+—Apple Support
+
+**Evidence**  
+- Conversation 4901  
+- Conversation 2628  
+- Conversation 14212",4901|2628|14212,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport downloaded iOS 11.0.2 ;now the majority of my apps crash, I can’t make phonecalls because my screen then freezes and resets!?","Hi there,
+
+We are sorry to hear that you are experiencing crashes and screen freezes after updating to iOS 11.0.2. Based on similar reports, we suggest updating your device to iOS 11.1 to see if these issues resolve.
+
+Please let us know if the problem persists after the update so we can look into this further with you.
+
+**Evidence:**
+*   Conversation ID 11111: Support suggested updating to iOS 11.1 for users experiencing crashes/freezes on iOS 11.0.3.
+*   Conversation ID 1779: Support verified iOS version and assisted with app/call issues on iOS 11.",11111|15467|1779,groq,qwen/qwen3.8-27b,True,,,,,,
+@AppleSupport I dm’ed you but I’m sure you’re not going to help because support teams never do anything to help the people!,"Hi there,
+
+Thanks for reaching out. We’re sorry you’re feeling frustrated. We’re here to help—please DM us with the details of the issue and we’ll look into it right away.
+
+**Evidence**  
+- #1 (conversation_id 14334)  
+- #2 (conversation_id 11661)  
+- #3 (conversation_id 2662)",14334|11661|2662,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport this needs investigation, apple watch not supporting original charger https://t.co/LevhLVeBzw","Hi there!  
+It sounds like your Apple Watch isn’t charging with its original charger. Let’s get a closer look. Please send us a DM so we can walk through some troubleshooting steps together and determine the best next steps.  
+
+**Evidence**  
+- Conversation #2 (troubleshooting charger)  
+- Conversation #3 (charger not working, DM invitation)",4912|11144|2640,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport Why is predictive text changing the letter “I” to I️? I️ reset my keyboard, turned my phone on/off, and it’s still doing it.","Hi there,
+
+It sounds like the same issue you’ve seen in the past where the “I” key turns into a strange character. To help us investigate further, could you let us know:
+
+1. Which iPhone model you’re using?  
+2. Does the problem appear in all apps (e.g., Messages, Safari, Mail) or only specific ones?  
+3. Have you tried switching to a different keyboard language or resetting the keyboard layout again?
+
+Once we have that information, we can look into possible fixes.
+
+Thanks for your patience.
+
+**Evidence**  
+- #13945  
+- #12000  
+- #12023",13945|12000|12023,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport After installing the new iOS update (6 plus) my battery is eating energy! Within 3 hrs 45% left .... what’s your solution???,"Hi there,
+
+It sounds like the battery drain started after the recent update. To help you best, we’d like to confirm a few details:
+
+1. Which iOS version did you install? (e.g., iOS 11.1 or another version)  
+2. What device are you using?  
+3. Does the drain happen with any particular app or feature?
+
+Once we have that information, we can look into possible solutions. Please let us know or share the details via a direct message.
+
+Thanks for",4901|2628|2616,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport updated phone now apps constantly crash or won’t open, phone lags super slow or freezes very often. Resetting constantly help?","Hi there, I’m sorry to hear your phone is experiencing crashes, lag, and freezing after the update.
+
+Based on similar past cases, support agents typically ask for the specific iOS version you are running to determine if a newer patch (such as iOS 11.1 in historical examples) might resolve the issue. While resetting is a common temporary fix mentioned by users, it is not a permanent solution. Please let us know your current iOS version so we can guide you on the next steps.
+
+Evidence:
+- Conversation ID 11111 (Agent requested iOS version and suggested updating to a newer patch to test if issues continued)
+- Conversation ID 14311 (Customer mentioned frequent resetting; agent moved conversation to DM for further review)
+- Conversation ID 9190 (Agent acknowledged lag/glitching issues and moved conversation to DM)",9190|11111|14311,groq,qwen/qwen3.8-27b,True,,,,,,
+"@AppleSupport iPhone 8 AirDrop problem! Tried every single method on the internet no joy! Turn old iPho 6 on instant connection! all setting exactly the same. Reset network connections, Logged out/in iCloud, reset all BT and wifi settings on iMac late 2013, and iPho on ios11.1.2","Hi there, we are here to help isolate the cause of your AirDrop issue. Since you are currently on iOS 11.1.2, could you please verify your exact iOS version and ensure you have the latest updates installed? We recommend sending us a DM so we can check on more options for you.
+
+Evidence:
+- Conversation ID 5849: Support requested exact iOS version to isolate Wi-Fi connection issues after iOS 11 update.
+- Conversation ID 2624: Support noted iOS 11.1 contained bug fixes and requested a DM to investigate further.
+- Conversation ID 12569: Support requested current iOS version and suggested a DM to check on more options.",5849|2624|12569,groq,qwen/qwen3.8-27b,True,,,,,,
+"@AppleSupport @115858 Since software update to latest ios version iPhone6 is constantly facing issue of system hanged out,kindly chk n update","Hi there,
+
+It sounds like the recent iOS update is causing your iPhone 6 to hang. To help you troubleshoot, could you please let us know:
+
+1. Which exact iPhone 6 model you have (e.g., 6, 6 Plus, 6s, 6s Plus).  
+2. The iOS version currently installed (you can find this in Settings → General → About).  
+3. Any steps you’ve already tried (e.g., restarting, force‑closing apps, checking for additional updates).
+
+Once we have that information, we can guide you through the next steps to resolve the issue.
+
+Thanks for reaching out – we’re here to help!
+
+**Evidence**  
+- Conversation 10691 – shows similar post‑update glitches and the need for more details.  
+- Conversation 1779 – includes asking for model and iOS version, and steps tried.  
+- Conversation 736 – also requests model, iOS version, and troubleshooting steps.",10691|1779|736,groq,openai/gpt-oss-20b,True,,,,,,
+Am I the only one whose phone is burning up now that I’ve updated my software to the latest version of iOS? @AppleSupport,"Hi there,
+
+We’ve seen a few customers report similar problems after updating to the latest iOS, such as battery performance issues and device overheating. To help us investigate, could you let us know:
+
+* The exact iOS version you’re running  
+* Your iPhone model (e.g., iPhone 12, iPhone 13, etc.)
+
+Once we have that information, we can look into potential fixes or work‑arounds for your situation.
+
+Thanks for reaching out!  
+
+**Evidence**  
+- Conversation 5821  
+- Conversation 14867  
+- Conversation 4917",5821|14867|4917,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport , I just wanted to let you know that this is the second time facing a problem (sudden shutdown) with my iPhone which lead me to restore, delete everything and fresh install due to your recent software updates. Pls fix this issue quickly!!","Hi there,  
+I’m sorry to hear you’re experiencing sudden shutdowns again.  
+To help us investigate, could you please let us know:
+
+1. Which iPhone model you’re using (e.g., iPhone 7, iPhone 12, etc.)  
+2. The exact iOS version installed  
+3. Whether the issue occurs after a restart or only after a software update  
+
+Once we have those details, we can look into the problem further.  
+
+Thanks for your patience.  
+
+**Evidence**  
+- #1 (conversation_id 8548)  
+- #2 (conversation_id 4896)  
+- #3 (conversation_id 2628)",8548|4896|2628,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport hii I updated my phone and now my Apple Music is not working I can’t see any of the songs I have downloaded only the purchased ones from iTunes can you pls sort this.. What am I paying for?? 🙄,"Hi there, thanks for reaching out. We’re sorry to hear you’re having trouble with Apple Music after your update.
+
+To help us investigate, could you please let us know which iOS version you are currently running? Additionally, please try restarting your device to see if that resolves the issue. If the problem persists, we can continue supporting you via DM.
+
+Evidence:
+- Conversation ID 4879 (Restarting device; requesting iOS version)
+- Conversation ID 2632 (Requesting device and iOS version)",4879|2632|2666,groq,qwen/qwen3.8-27b,True,,,,,,
+i can’t download or add songs to my playlist on apple music? help? @AppleSupport,"Hi there,
+
+It sounds like the download is stuck and the song may be greyed out.  
+Here’s",2666|4879|2632,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport Sometimes my phone just randomly starts deleting my text or just starts typing random letters. I can hardly even use my phone half the time,"Hi there,
+
+It sounds like you’re experiencing keyboard glitches that affect multiple apps. To help us investigate further, could you let us know:
+
+1. When did the issue first start?  
+2. Does it happen on all apps or only specific ones?  
+3. Which iPhone model and iOS version are you using?  
+
+Once we have that information, we can look into possible causes such as keyboard settings, software updates, or accessibility features that might be affecting typing.
+
+Thanks for your patience—looking forward to your reply.
+
+**Evidence**  
+- Conversation #12000  
+- Conversation #13211  
+- Conversation #13945",12000|13211|13945,groq,openai/gpt-oss-20b,True,,,,,,
+"Dear @AppleSupport My iphone6S does not like IOS11 11.01 or 11.02.  It's glitchy, apps don't open, my lock screen freezes and goes black and everything is basically on a 5 second delay. Siri is slower than dirt. It is annoying.  Any suggestions? #iOS11 #ios11update @115858","Hi there,
+
+It sounds like you’re experiencing performance issues after installing an early iOS 11 build.  
+From the cases we’ve seen, the first step is to confirm which iOS version you’re on and, if you’re on 11.0.x, update to iOS 11.1 (the latest 11.x release).  
+
+**What to do next**  
+1. Open **Settings > General >",11111|736|1779,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport please check my DM having Activity issues with my Watch. Nothing is being tracked..,"Hi,
+
+We’d like to investigate this further. Please DM us with details of what’s happening on your Watch so we can troubleshoot the activity tracking issue.
+
+Thanks for reaching out.
+
+**Evidence**  
+- #1 (conversation_id 11661)  
+- #2 (conversation_id 719)  
+- #3 (conversation_id 11118)",11661|719|11118,groq,openai/gpt-oss-20b,True,,,,,,
+Dog it’s hard to remember to tap something else AFTER u tap “I”. Fuckin up ALL my tweets! @115858 @AppleSupport Get this box A shit together! I shouldn’t have to make an ALTERNATIVE TEXT FOR A REGULAR LETTER ON MY KEYBOARD!!!!!!!,"Hi there,
+
+It sounds like the “I” key is behaving unexpectedly on your keyboard.  
+To",8561|12023|13945,groq,openai/gpt-oss-20b,True,,,,,,
+"@AppleSupport since I updated to iOS 11, unable to download any new apps/music from App Store or iTunes.  Tried all troubleshooting including a  DFU. 😡","Hi there,
+
+It sounds like you’re experiencing the same download issue that a few customers",11633|1791|4879,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport my card just got charged for a 9.52 purchase from iTunes that I don’t remember making? what do I do to get this resolved,"I’m sorry you’re seeing a charge you don’t recognize.  
+For unrecognized iTunes charges, please contact our iTunes Store group for help. They can investigate the transaction and resolve the issue for you.
+
+**Evidence**  
+- Conversation #12602 (support response about unrecognized charges)",9180|12602|8579,groq,openai/gpt-oss-20b,True,,,,,,
+"My phone was working perfectly and the second I️ download the ios update it’s slow, lags, and freezes. @AppleSupport what the fuck","Hi there,
+
+Thanks for reaching out. To help you troubleshoot the slowdown and freezes after the update, could you let us know:
+
+1. Your iPhone model (e.g., iPhone 8 Plus, iPhone 6s Plus, etc.)  
+2. The exact iOS version currently installed  
+3. Any steps you’ve already tried (e.g., restarting, clearing storage, etc.)
+
+Once we have that information, we can guide you through the next steps.
+
+Thanks for your patience.
+
+**Evidence**  
+- Conversation 5821  
+- Conversation 736  
+- Conversation 3764",5821|736|3764,groq,openai/gpt-oss-20b,True,,,,,,
+@AppleSupport hi I’m trying to update my billing details but it either says my payment was declined when I have not purchased anything or says that my form isn’t filled in when it’s completed.,"Hi there,
+
+I’m sorry to hear you are experiencing issues updating your billing details. Since the specific error messages you are seeing (payment declined or form validation errors) are not addressed in the available historical records, I cannot provide a specific technical fix based on past cases.
+
+However, based on similar billing inquiries, our team typically requests additional details to investigate account-specific issues. Please provide your country and a brief description of the exact error message you are receiving so we can look into this further.
+
+*Note: This reply is a cautious historical template, as the retrieved evidence does not contain specific solutions for billing form errors.*
+
+**Evidence:**
+*   Conversation ID 8579 (Support requested country to look into billing/charge visibility issues)
+*   Conversation ID 1764 (Support directed customer to contact iTunes Store team for account-specific help)",12602|8579|1764,groq,qwen/qwen3.8-27b,True,,,,,,

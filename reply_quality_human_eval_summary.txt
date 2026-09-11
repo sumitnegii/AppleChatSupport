@@ -1,0 +1,48 @@
+reply_quality_human_eval_summary.txt
+
+Small exploratory human evaluation for grounded AppleSupport reply quality.
+
+Goal:
+This file documents a 30-query exploratory human evaluation for the retrieval-grounded reply
+layer. The evaluation is intentionally separate from the golden intent taxonomy and from the
+semantic label files. The existing golden_eval.csv is used only for the customer query pool.
+It is not modified and it is not used as a source of reply-quality labels or rubric judgments.
+
+How the 30 queries were sampled:
+The customer queries were sampled deterministically from the text column of golden_eval.csv.
+A fixed random seed (42) was used, then the sample directly excluded the four demo queries
+used in retrieval_demo.py and the grounded demo. Duplicates were dropped and the final
+sample size is exactly 30 rows.
+
+Rubric definitions:
+The scoring columns are intentionally blank and are reserved for human review:
+
+- factual_grounding (0-2):
+  0 = reply is not grounded in the retrieved historical evidence.
+  1 = reply partially references the evidence but includes weak or ambiguous grounding.
+  2 = reply is clearly grounded in the retrieved historical evidence and follows the evidence.
+
+- helpfulness (0-2):
+  0 = reply is not helpful to the customer.
+  1 = reply is partially helpful but incomplete.
+  2 = reply is clearly helpful and action-oriented while staying within evidence.
+
+- relevance (0-2):
+  0 = reply is not relevant to the customer query.
+  1 = reply is partly relevant to the customer problem.
+  2 = reply is strongly relevant to the customer query and evidence.
+
+- unsupported_claims (0-2):
+  0 = reply includes unsupported claims, promises, or invented policies.
+  1 = reply has a minor unsupported or over-generalized claim.
+  2 = reply avoids unsupported claims and stays grounded in historical evidence.
+
+- overall_quality (0-2):
+  0 = poor reply quality.
+  1 = usable but mixed quality.
+  2 = strong quality reply grounded in evidence and helpful to the customer.
+
+Notes:
+The generated replies are judged against the retrieved historical evidence IDs in the same file.
+No model-based LLM judge is used. No escalation logic is included.
+The file is a small exploratory human evaluation file for reply quality.

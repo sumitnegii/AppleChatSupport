@@ -1,3 +1,8 @@
 .env
 data/
 archive/
+apple_support_conversations.csv
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

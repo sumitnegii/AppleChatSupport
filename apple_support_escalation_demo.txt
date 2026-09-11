@@ -1,0 +1,70 @@
+================================================================================
+AppleSupport AI Agent — Escalation Decision Demonstration
+================================================================================
+Total Examples Evaluated: 11
+Auto-handled: 5 (45.5%)
+Escalated to Human: 6 (54.5%)
+--------------------------------------------------------------------------------
+
+[1] Query: @AppleSupport after update of ios 11.0.2 my iphone 6s screen freeze and phone has become slow with battery drain.
+    Intent: battery_charging | Retrieval Score: 0.6643
+    Decision: AUTO_HANDLE (Risk: LOW)
+    Reason: Routine troubleshooting query with clear 'battery_charging' intent and sufficient historical evidence grounding (relevance: 0.664); safe for automated response.
+
+[2] Query: @AppleSupport Why is predictive text changing the letter “I” to an exclamation point and strange symbol?
+    Intent: keyboard_input | Retrieval Score: 0.5012
+    Decision: AUTO_HANDLE (Risk: LOW)
+    Reason: Routine troubleshooting query with clear 'keyboard_input' intent and sufficient historical evidence grounding (relevance: 0.501); safe for automated response.
+
+[3] Query: @AppleSupport my wifi keeps disconnecting whenever I lock my iPhone 8.
+    Intent: connectivity | Retrieval Score: 0.4812
+    Decision: AUTO_HANDLE (Risk: LOW)
+    Reason: Routine troubleshooting query with clear 'connectivity' intent and sufficient historical evidence grounding (relevance: 0.481); safe for automated response.
+
+[4] Query: @AppleSupport hey, how would I keep adding songs to a custom downloaded playlist from Apple Music?
+    Intent: media_accessories | Retrieval Score: 0.4009
+    Decision: AUTO_HANDLE (Risk: LOW)
+    Reason: Routine troubleshooting query with clear 'media_accessories' intent and sufficient historical evidence grounding (relevance: 0.401); safe for automated response.
+
+[5] Query: @AppleSupport apps open slowly and crash after updating to latest version
+    Intent: software_update | Retrieval Score: 0.5011
+    Decision: AUTO_HANDLE (Risk: LOW)
+    Reason: Routine troubleshooting query with clear 'software_update' intent and sufficient historical evidence grounding (relevance: 0.501); safe for automated response.
+
+[6] Query: @AppleSupport I am tired of talking to an automated bot, connect me with a real human agent now!
+    Intent: connectivity | Retrieval Score: 0.3146
+    Decision: HUMAN_ESCALATION (Risk: HIGH)
+    Reason: Customer explicitly requested to interact with a human agent or representative.
+    Signals: explicit_human_request
+
+[7] Query: @AppleSupport my Apple ID was disabled for security reasons and I am completely locked out of my account.
+    Intent: account_apple_id | Retrieval Score: 0.6563
+    Decision: HUMAN_ESCALATION (Risk: HIGH)
+    Reason: Account security, credentials, or Apple ID access issue requires authenticated human support.
+    Signals: account_security_access
+
+[8] Query: @AppleSupport my card just got charged for a 9.52 subscription that I never purchased. I need a refund immediately.
+    Intent: payments_billing | Retrieval Score: 0.5400
+    Decision: HUMAN_ESCALATION (Risk: HIGH)
+    Reason: Financial, billing, or charge dispute involves monetary adjustments or payment details.
+    Signals: payment_refund_dispute
+
+[9] Query: @AppleSupport Am I the only one whose phone is burning up and smoking after the update? The battery is swelling.
+    Intent: battery_charging | Retrieval Score: 0.4751
+    Decision: HUMAN_ESCALATION (Risk: HIGH)
+    Reason: Hardware safety hazard (overheating/battery swelling) or catastrophic data loss.
+    Signals: severe_hardware_safety_data_loss
+
+[10] Query: Help me pls
+    Intent: ambiguous | Retrieval Score: 0.2818
+    Decision: HUMAN_ESCALATION (Risk: MEDIUM)
+    Reason: Customer query intent is ambiguous or underspecified.
+    Signals: ambiguous_intent
+
+[11] Query: Can you help me install Linux Ubuntu onto my Apple Watch Series 3?
+    Intent: software_update | Retrieval Score: 0.1900
+    Decision: HUMAN_ESCALATION (Risk: MEDIUM)
+    Reason: Top retrieval similarity (0.190) is below confidence threshold (0.28).
+    Signals: insufficient_retrieval_grounding
+
+================================================================================

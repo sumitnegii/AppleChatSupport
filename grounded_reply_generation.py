@@ -17,16 +17,14 @@ so the workspace remains reproducible without leaking credentials.
 """
 
 import os
-import re
 import json
 import requests
-import numpy as np
 import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any
 from dotenv import load_dotenv
 
-from historical_retrieval import cosine_search, clean_text
+from historical_retrieval import faiss_search, cosine_search, clean_text
 
 load_dotenv(dotenv_path='.env')
 
@@ -37,7 +35,9 @@ DEMO_OUTPUT = 'apple_support_grounded_reply_demo.txt'
 OPENAI_MODEL = os.getenv('OPEN_AI_MODEL', os.getenv('OPENAI_MODEL', 'gpt-4o-mini'))
 OPENROUTER_MODEL = os.getenv('OPEN_ROUTER_MODEL', 'openai/gpt-4o-mini')
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+GROK_MODEL = os.getenv('GROK_MODEL', os.getenv('GROK_API_MODEL', 'grok-3-mini'))
 GROQ_MODEL = os.getenv('GROQ_MODEL', 'openai/gpt-oss-20b')
+DEFAULT_PROVIDER = os.getenv('DEFAULT_PROVIDER', 'groq')
 
 
 def load_index(index_csv=INDEX_CSV) -> pd.DataFrame:
@@ -113,29 +113,59 @@ def fallback_grounded_reply(query: str, top: pd.DataFrame) -> str:
     return '\n'.join(lines)
 
 
-def call_gemini_grounded_generation(prompt: str, model: str = GEMINI_MODEL,
-                                    api_key: str = None) -> str:
-    """Try a Gemini generation path from the secure .env key first."""
+def call_gemini_grounded_generation(prompt: str, model: str = None,
+                                    api_key: str = None,
+                                    return_model: bool = False):
+    """Try a Gemini generation path from the secure .env key first, with candidate fallbacks."""
     api_key = api_key or os.getenv('GEMINI_API_KEY_MAIN')
     if not api_key:
-        return ''
+        return ('', '') if return_model else ''
 
-    try:
-        # Use a lightweight HTTP request to Gemini REST endpoint.
-        url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}'
+    target_model = model or os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+    # Build candidate model list starting with configured model, then active fallback models
+    candidate_models = [target_model]
+    for alt in ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-latest']:
+        if alt not in candidate_models:
+            candidate_models.append(alt)
+
+    headers = {
+        'x-goog-api-key': api_key,
+        'Content-Type': 'application/json',
+    }
+
+    for m in candidate_models:
+        url = f'https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent'
         payload = {
             'contents': [{'parts': [{'text': prompt}]}],
             'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 250},
         }
-        response = requests.post(url, json=payload, timeout=60)
-        response.raise_for_status()
-        data = response.json()
-        if 'candidates' in data and data['candidates']:
-            return data['candidates'][0]['content']['parts'][0]['text'].strip()
-        return ''
-    except Exception as exc:
-        print('Gemini generation failed:', type(exc).__name__, 'provider request error')
-        return ''
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                if 'candidates' in data and data['candidates']:
+                    text = data['candidates'][0]['content']['parts'][0]['text'].strip()
+                    if text:
+                        return (text, m) if return_model else text
+            else:
+                err_msg = ''
+                err_status = ''
+                try:
+                    err_json = response.json().get('error', {})
+                    err_status = err_json.get('status', 'ERROR')
+                    err_msg = err_json.get('message', '')
+                except Exception:
+                    err_msg = response.text[:100]
+                if api_key:
+                    err_msg = err_msg.replace(api_key, '***REDACTED***')
+                print(f'Gemini generation failed on model {m}: HTTP {response.status_code} ({err_status}): {err_msg[:120]}')
+        except Exception as exc:
+            err_msg = str(exc)
+            if api_key:
+                err_msg = err_msg.replace(api_key, '***REDACTED***')
+            print(f'Gemini generation failed on model {m}: {type(exc).__name__}: {err_msg[:120]}')
+
+    return ('', '') if return_model else ''
 
 
 def call_openai_grounded_generation(prompt: str, model: str = OPENAI_MODEL,
@@ -160,7 +190,10 @@ def call_openai_grounded_generation(prompt: str, model: str = OPENAI_MODEL,
         )
         return resp.choices[0].message.content.strip()
     except Exception as exc:
-        print('OpenAI generation failed:', type(exc).__name__, 'provider request error')
+        err_msg = str(exc)
+        if api_key:
+            err_msg = err_msg.replace(api_key, '***REDACTED***')
+        print(f'OpenAI generation failed: {type(exc).__name__}: {err_msg[:120]}')
         return ''
 
 
@@ -189,19 +222,28 @@ def call_openrouter_grounded_generation(prompt: str, model: str = OPENROUTER_MOD
             'max_tokens': 250,
         }
         response = requests.post(base_url + '/chat/completions', headers=headers, json=payload, timeout=60)
-        response.raise_for_status()
-        data = response.json()
-        return data['choices'][0]['message']['content'].strip()
+        if response.status_code == 200:
+            data = response.json()
+            return data['choices'][0]['message']['content'].strip()
+        else:
+            err_msg = response.text[:120]
+            if api_key:
+                err_msg = err_msg.replace(api_key, '***REDACTED***')
+            print(f'OpenRouter generation failed: HTTP {response.status_code}: {err_msg}')
+            return ''
     except Exception as exc:
-        print('OpenRouter generation failed:', type(exc).__name__, 'provider request error')
+        err_msg = str(exc)
+        if api_key:
+            err_msg = err_msg.replace(api_key, '***REDACTED***')
+        print(f'OpenRouter generation failed: {type(exc).__name__}: {err_msg[:120]}')
         return ''
 
 
-def call_groq_grounded_generation(prompt: str, model: str = GROQ_MODEL,
+def call_grok_grounded_generation(prompt: str, model: str = GROK_MODEL,
                                   api_key: str = None,
-                                  base_url: str = 'https://api.groq.com/openai/v1') -> str:
-    """Call Groq via a Groq-compatible OpenAI API style endpoint using the secure .env GROQ_API_KEY key if present."""
-    api_key = api_key or os.getenv('GROQ_API_KEY') or os.getenv('GROK_API_KEY_PRIMARY')
+                                  base_url: str = 'https://api.x.ai/v1') -> str:
+    """Call Grok through the xAI OpenAI-compatible chat-completions endpoint using the secure .env GROK_API_KEY_PRIMARY key if present."""
+    api_key = api_key or os.getenv('GROK_API_KEY_PRIMARY')
     if not api_key:
         return ''
 
@@ -220,59 +262,151 @@ def call_groq_grounded_generation(prompt: str, model: str = GROQ_MODEL,
             'max_tokens': 250,
         }
         response = requests.post(base_url + '/chat/completions', headers=headers, json=payload, timeout=60)
-        response.raise_for_status()
-        data = response.json()
-        return data['choices'][0]['message']['content'].strip()
+        if response.status_code == 200:
+            data = response.json()
+            return data['choices'][0]['message']['content'].strip()
+        else:
+            err_msg = response.text[:120]
+            if api_key:
+                err_msg = err_msg.replace(api_key, '***REDACTED***')
+            print(f'Grok generation failed: HTTP {response.status_code}: {err_msg}')
+            return ''
     except Exception as exc:
-        print('Groq generation failed:', type(exc).__name__, 'provider request error')
+        err_msg = str(exc)
+        if api_key:
+            err_msg = err_msg.replace(api_key, '***REDACTED***')
+        print(f'Grok generation failed: {type(exc).__name__}: {err_msg[:120]}')
         return ''
+
+
+def call_groq_grounded_generation(prompt: str, model: str = None,
+                                  api_key: str = None,
+                                  base_url: str = 'https://api.groq.com/openai/v1',
+                                  return_model: bool = False):
+    """Call Groq via a Groq-compatible OpenAI API style endpoint using the secure .env GROQ_API_KEY key if present."""
+    api_key = api_key or os.getenv('GROQ_API_KEY') or os.getenv('GROK_API_KEY_PRIMARY')
+    if not api_key:
+        return ('', '') if return_model else ''
+
+    target_model = model or os.getenv('GROQ_MODEL', 'qwen/qwen3.8-27b')
+    candidate_models = [target_model]
+    for alt in ['qwen/qwen3.8-27b', 'openai/gpt-oss-20b', 'groq/compound-mini']:
+        if alt not in candidate_models:
+            candidate_models.append(alt)
+
+    headers = {
+        'Authorization': f'Bearer {api_key}',
+        'Content-Type': 'application/json',
+    }
+
+    for m in candidate_models:
+        payload = {
+            'model': m,
+            'messages': [
+                {'role': 'system', 'content': 'You are writing a concise, grounded AppleSupport draft reply from historical evidence only.'},
+                {'role': 'user', 'content': prompt},
+            ],
+            'temperature': 0.2,
+            'max_tokens': 350,
+        }
+        try:
+            response = requests.post(base_url + '/chat/completions', headers=headers, json=payload, timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                msg = data['choices'][0]['message']
+                content = (msg.get('content') or '').strip()
+                if content:
+                    return (content, m) if return_model else content
+            else:
+                err_msg = response.text[:120]
+                if api_key:
+                    err_msg = err_msg.replace(api_key, '***REDACTED***')
+                print(f'Groq model {m} failed: HTTP {response.status_code}: {err_msg}')
+        except Exception as exc:
+            err_msg = str(exc)
+            if api_key:
+                err_msg = err_msg.replace(api_key, '***REDACTED***')
+            print(f'Groq model {m} failed: {type(exc).__name__}: {err_msg[:120]}')
+
+    return ('', '') if return_model else ''
 
 
 def generate_grounded_reply(query: str,
                              index_csv: str = INDEX_CSV,
                              k: int = 3,
                              model: str = OPENAI_MODEL,
-                             use_remote: bool = True) -> Dict[str, Any]:
+                             provider: str = None,
+                             use_remote: bool = True,
+                             records: pd.DataFrame = None) -> Dict[str, Any]:
     """Create one grounded draft reply from retrieved historical cases.
 
     Returns a dictionary with the customer query, the retrieved row records,
     the generated reply, and the evidence conversation IDs.
     """
-    records = load_index(index_csv)
-    top = cosine_search(query, records, k=k)
+    if records is None:
+        records = load_index(index_csv)
+
+    # Use local FAISS vector search by default, with seamless fallback to cosine_search
+    try:
+        top = faiss_search(query, records, k=k)
+    except Exception:
+        top = cosine_search(query, records, k=k)
 
     prompt = build_prompt(query, top)
 
-    # Requested provider order: Gemini -> OpenAI -> OpenRouter -> Groq/Grok -> deterministic fallback.
+    active_provider = provider or DEFAULT_PROVIDER
+
     generated = ''
     provider_used = 'deterministic_fallback'
     model_used = 'deterministic_template'
     remote_request_succeeded = False
 
     if use_remote:
-        generated = call_gemini_grounded_generation(prompt, model=GEMINI_MODEL)
-        if generated.strip():
-            provider_used = 'gemini'
-            model_used = GEMINI_MODEL
-            remote_request_succeeded = True
-        else:
-            generated = call_openai_grounded_generation(prompt, model=model)
-            if generated.strip():
-                provider_used = 'openai'
-                model_used = model
+        if active_provider == 'groq':
+            groq_text, groq_m = call_groq_grounded_generation(prompt, model=GROQ_MODEL, return_model=True)
+            if groq_text.strip():
+                generated = groq_text
+                provider_used = 'groq'
+                model_used = groq_m
                 remote_request_succeeded = True
             else:
-                generated = call_openrouter_grounded_generation(prompt, model=OPENROUTER_MODEL)
-                if generated.strip():
-                    provider_used = 'openrouter'
-                    model_used = OPENROUTER_MODEL
+                gemini_text, gemini_model = call_gemini_grounded_generation(prompt, model=GEMINI_MODEL, return_model=True)
+                if gemini_text.strip():
+                    generated = gemini_text
+                    provider_used = 'gemini'
+                    model_used = gemini_model
                     remote_request_succeeded = True
                 else:
-                    generated = call_groq_grounded_generation(prompt, model=GROQ_MODEL)
+                    generated = call_openrouter_grounded_generation(prompt, model=OPENROUTER_MODEL)
                     if generated.strip():
-                        provider_used = 'groq'
-                        model_used = GROQ_MODEL
+                        provider_used = 'openrouter'
+                        model_used = OPENROUTER_MODEL
                         remote_request_succeeded = True
+        else:
+            gemini_text, gemini_model = call_gemini_grounded_generation(prompt, model=GEMINI_MODEL, return_model=True)
+            if gemini_text.strip():
+                generated = gemini_text
+                provider_used = 'gemini'
+                model_used = gemini_model
+                remote_request_succeeded = True
+            else:
+                generated = call_groq_grounded_generation(prompt, model=GROQ_MODEL)
+                if generated.strip():
+                    provider_used = 'groq'
+                    model_used = GROQ_MODEL
+                    remote_request_succeeded = True
+                else:
+                    generated = call_openrouter_grounded_generation(prompt, model=OPENROUTER_MODEL)
+                    if generated.strip():
+                        provider_used = 'openrouter'
+                        model_used = OPENROUTER_MODEL
+                        remote_request_succeeded = True
+                    else:
+                        generated = call_openai_grounded_generation(prompt, model=model)
+                        if generated.strip():
+                            provider_used = 'openai'
+                            model_used = model
+                            remote_request_succeeded = True
 
     # Use deterministic fallback if no API key or failure occurs.
     if not generated.strip():
